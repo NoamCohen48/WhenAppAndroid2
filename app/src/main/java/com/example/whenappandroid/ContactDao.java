@@ -1,7 +1,10 @@
 package com.example.whenappandroid;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.whenappandroid.Data.Contact;
 
@@ -16,10 +19,13 @@ public interface ContactDao {
     @Query("SELECT * FROM contact WHERE id =:id")
     Contact get(int id);
 
+    @Insert
     void insert(Contact... contacts);
 
+    @Update
     void update(Contact... contacts);
 
+    @Delete
     void delete(Contact... contacts);
 
 }
