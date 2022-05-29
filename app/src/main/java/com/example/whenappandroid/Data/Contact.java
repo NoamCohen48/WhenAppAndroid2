@@ -1,13 +1,13 @@
 package com.example.whenappandroid.Data;
 
 public class Contact {
-    private String id;
+    private int id;
     private String name;
     private String server;
     private String last;
     private String lastdate;
 
-    public Contact(String id, String name, String server, String last, String lastdate) {
+    public Contact(int id, String name, String server, String last, String lastdate) {
         this.id = id;
         this.name = name;
         this.server = server;
@@ -15,11 +15,11 @@ public class Contact {
         this.lastdate = lastdate;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
