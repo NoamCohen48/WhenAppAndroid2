@@ -1,55 +1,39 @@
 package com.example.whenappandroid.ChatScreen;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whenappandroid.AppDB;
-import com.example.whenappandroid.ContactDao;
-import com.example.whenappandroid.Data.Contact;
-import com.example.whenappandroid.databinding.ActivityChatScreenBinding;
-
-import java.util.List;
+import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
+import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
+import com.example.whenappandroid.R;
 
 public class ChatScreenActivity extends AppCompatActivity {
 
-    private AppDB db;
-    private ContactDao contactDao;
-    private ActivityChatScreenBinding binding;
+    private ContactViewModel contactViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding  = ActivityChatScreenBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-        //setContentView(R.layout.activity_chat_screen);
+        setContentView(R.layout.activity_chat_screen);
 
-        db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactsDB")
-                .allowMainThreadQueries()
-                .build();
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.ContactDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        contactDao = db.contactDao();
+        contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
-        Contact shaked = new Contact(0, "shaked", "a", "hey", "");
-        Contact noam = new Contact(0, "noam", "a", "hi", "");
-
-        contactDao.insert(shaked, noam);
-
-        //ListView lvContacts = findViewById(R.id.lvContacts);
-        List<Contact> contacts = contactDao.index();
-
-        ArrayAdapter<Contact> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contacts);
-
-        binding.lvContacts.setAdapter(adapter);
-
-        binding.btnAddContact.setOnClickListener(v -> {
-
+        contactViewModel.getAllContacts().observe(this, contact -> {
+            // Update the cached copy of the words in the adapter.
+            adapter.submitList(contact);
         });
+
     }
+
 
 }

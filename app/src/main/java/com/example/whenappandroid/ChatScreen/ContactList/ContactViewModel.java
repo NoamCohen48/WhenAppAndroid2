@@ -1,4 +1,4 @@
-package com.example.whenappandroid;
+package com.example.whenappandroid.ChatScreen.ContactList;
 
 import android.app.Application;
 
@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.whenappandroid.Data.Contact;
+import com.example.whenappandroid.Data.ContactRepository;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ContactViewModel extends AndroidViewModel {
         allContacts = repository.getAllContacts();
     }
 
-    LiveData<List<Contact>> getAllContacts() { return allContacts; }
+    public LiveData<List<Contact>> getAllContacts() { return allContacts; }
 
     public void insert(Contact contact) { repository.insert(contact); }
 }
