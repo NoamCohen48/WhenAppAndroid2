@@ -9,17 +9,19 @@ import android.widget.Button;
 
 import com.example.whenappandroid.R;
 import com.example.whenappandroid.Register.RegisterActivity;
+import com.example.whenappandroid.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
-
+    private ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        Button btnToRegister = findViewById(R.id.btnToRegister);
-        btnToRegister.setOnClickListener(v -> {
+        binding.btnToRegister.setOnClickListener(v -> {
             Intent i = new Intent(this, RegisterActivity.class);
             startActivity(i);
         });
