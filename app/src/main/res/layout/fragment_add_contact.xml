@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddContactFragment">
+    tools:context=".ChatScreen.AddContactFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:fontFamily="monospace"
+        android:text="Add Contact"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameInputBox"
+        app:layout_constraintEnd_toEndOf="@+id/usernameInputBox"
+        app:layout_constraintStart_toStartOf="@+id/usernameInputBox" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/usernameInputBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/nicknameInputBox"
+        app:layout_constraintEnd_toEndOf="@+id/nicknameInputBox"
+        app:layout_constraintStart_toStartOf="@+id/nicknameInputBox" />
+
+    <EditText
+        android:id="@+id/nicknameInputBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:ems="10"
+        android:hint="Nickname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/serverInputBox"
+        app:layout_constraintEnd_toEndOf="@+id/serverInputBox"
+        app:layout_constraintStart_toStartOf="@+id/serverInputBox" />
+
+    <EditText
+        android:id="@+id/serverInputBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:ems="10"
+        android:hint="Server"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
