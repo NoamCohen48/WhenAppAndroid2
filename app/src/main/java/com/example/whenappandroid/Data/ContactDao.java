@@ -1,4 +1,4 @@
-package com.example.whenappandroid;
+package com.example.whenappandroid.Data;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

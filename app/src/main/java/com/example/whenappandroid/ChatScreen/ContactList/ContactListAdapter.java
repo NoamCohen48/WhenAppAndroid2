@@ -1,4 +1,4 @@
-package com.example.whenappandroid;
+package com.example.whenappandroid.ChatScreen.ContactList;
 
 import android.view.ViewGroup;
 
@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.example.whenappandroid.ChatScreen.ContactList.ContactViewHolder;
 import com.example.whenappandroid.Data.Contact;
 
 public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> {
@@ -25,7 +26,7 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
         holder.bind(current.toString());
     }
 
-    static class ContactDiff extends DiffUtil.ItemCallback<Contact> {
+    static public class ContactDiff extends DiffUtil.ItemCallback<Contact> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Contact oldItem, @NonNull Contact newItem) {

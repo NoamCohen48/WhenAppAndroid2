@@ -1,4 +1,4 @@
-package com.example.whenappandroid;
+package com.example.whenappandroid.Data;
 
 import android.content.Context;
 
@@ -8,8 +8,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.whenappandroid.Data.Contact;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,12 +15,13 @@ import java.util.concurrent.Executors;
 public abstract class AppDB extends RoomDatabase {
 
     public abstract ContactDao contactDao();
-        private static volatile AppDB INSTANCE;
+
+    private static volatile AppDB INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static AppDB getDatabase(final Context context) {
+    public static AppDB getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDB.class) {
                 if (INSTANCE == null) {
