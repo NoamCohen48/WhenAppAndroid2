@@ -1,19 +1,21 @@
 package com.example.whenappandroid.Data;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Contact {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private String id;
     private String name;
     private String server;
     private String last;
     private String lastdate;
 
-    public Contact(int id, String name, String server, String last, String lastdate) {
+    public Contact(@NonNull String id, String name, String server, String last, String lastdate) {
 
         this.id = id;
         this.name = name;
@@ -22,11 +24,11 @@ public class Contact {
         this.lastdate = lastdate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
