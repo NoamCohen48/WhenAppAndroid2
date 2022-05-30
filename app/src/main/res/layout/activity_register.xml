@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/usernameInputBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -29,7 +29,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonNickName"
+            android:id="@+id/nicknameInputBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -40,7 +40,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/passwordInputBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -51,7 +51,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editTextTextConfirmPassword"
+            android:id="@+id/confirmPasswordInputBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -60,35 +60,17 @@
             android:textColorHint="@color/white"
             android:inputType="textPassword"
             android:minHeight="48dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/upload_id_prof_pic"/>
 
 
         <ImageView
-            android:id="@+id/IdProf"
+            android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/ic_insert_photo_white_48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/editbox"/>
+            android:layout_height="111dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/stat_sys_upload" />
 
         <Button
-            android:id="@+id/UploadBtn"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/uploadImage"
-            android:textStyle="bold"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:background="@drawable/button"/>
-
-        <Button
-            android:id="@+id/RegisterBtn"
+            android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
