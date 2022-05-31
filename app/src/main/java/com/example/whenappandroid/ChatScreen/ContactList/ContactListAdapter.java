@@ -1,5 +1,6 @@
 package com.example.whenappandroid.ChatScreen.ContactList;
 
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.whenappandroid.ChatScreen.ContactList.ContactViewHolder;
 import com.example.whenappandroid.Data.Contact;
+import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 
 public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> {
 
@@ -17,13 +19,13 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return ContactViewHolder.create(parent);
+        return new ContactViewHolder(RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.getContext())));
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
         Contact current = getItem(position);
-        holder.bind(current.toString());
+        holder.bind(current);
     }
 
     static public class ContactDiff extends DiffUtil.ItemCallback<Contact> {

@@ -5,25 +5,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.R;
+import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 
 class ContactViewHolder extends RecyclerView.ViewHolder {
-    private final TextView contactItemView;
+    private RecyclerviewItemBinding binding;
 
-    private ContactViewHolder(View itemView) {
-        super(itemView);
-        contactItemView = itemView.findViewById(R.id.textView);
+    public ContactViewHolder(RecyclerviewItemBinding binding) {
+        super(binding.getRoot());
+        this.binding = binding;
     }
 
-    public void bind(String text) {
-        contactItemView.setText(text);
+    public void bind(Contact contact) {
+        binding.dateText.setText(contact.getLastdate());
+        binding.lastText.setText(contact.getLast());
+        binding.nameText.setText(contact.getName());
+        binding.Impo.setText(contact.getName());
     }
 
-    static ContactViewHolder create(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
-        return new ContactViewHolder(view);
-    }
 }
