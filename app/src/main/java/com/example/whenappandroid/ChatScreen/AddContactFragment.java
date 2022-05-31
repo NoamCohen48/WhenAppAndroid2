@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.whenappandroid.R;
+import com.example.whenappandroid.databinding.FragmentAddContactBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
- */
 public class AddContactFragment extends Fragment {
+
+    private FragmentAddContactBinding binding;
+
     public AddContactFragment() {
         // Required empty public constructor
     }
@@ -27,7 +27,16 @@ public class AddContactFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_contact, container, false);
+
+        binding = FragmentAddContactBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+
+        //return inflater.inflate(R.layout.fragment_add_contact, container, false);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

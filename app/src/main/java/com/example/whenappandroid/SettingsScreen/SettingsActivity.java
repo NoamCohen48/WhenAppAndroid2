@@ -1,6 +1,7 @@
 package com.example.whenappandroid.SettingsScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -29,10 +30,15 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         binding.themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("dark", isChecked);
-            editor.apply();
+            if(isChecked)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            else
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+//            SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = preferences.edit();
+//            editor.putBoolean("dark", isChecked);
+//            editor.apply();
         });
     }
 }
