@@ -14,33 +14,26 @@
         android:theme="@style/Theme.WhenAppAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".ChatScreen.AddContactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatScreen.Vertical.ChatVerticalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatScreen.Horizontal.ChatHorizontalActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingsScreen.SettingsActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Register.RegisterActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Login.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ChatScreen.ChatScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

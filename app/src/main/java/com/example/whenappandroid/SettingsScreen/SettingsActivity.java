@@ -1,16 +1,13 @@
 package com.example.whenappandroid.SettingsScreen;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 
-import com.example.whenappandroid.R;
-import com.example.whenappandroid.databinding.ActivityChatScreenBinding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.example.whenappandroid.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
