@@ -14,19 +14,24 @@
         android:theme="@style/Theme.WhenAppAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".VerticalMessagesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatScreen.AddContactActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatScreen.Vertical.ChatVerticalActivity"
-            android:exported="true" >
+            android:name=".ChatScreen.Vertical.VerticalContactsActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ChatScreen.Horizontal.ChatHorizontalActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".SettingsScreen.SettingsActivity"

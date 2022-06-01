@@ -1,25 +1,27 @@
 package com.example.whenappandroid.ChatScreen.Vertical;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
 import com.example.whenappandroid.ChatScreen.AddContactActivity;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
-import com.example.whenappandroid.databinding.ActivityChatVerticalBinding;
+import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
+import com.example.whenappandroid.databinding.ActivityVerticalContactsBinding;
 
-public class ChatVerticalActivity extends AppCompatActivity {
-    private ActivityChatVerticalBinding binding;
+public class VerticalContactsActivity extends AppCompatActivity {
+    private ActivityVerticalContactsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityChatVerticalBinding.inflate(getLayoutInflater());
+        binding = ActivityVerticalContactsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -35,5 +37,15 @@ public class ChatVerticalActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddContactActivity.class);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+        {
+            startActivity(new Intent(this, ChatHorizontalActivity.class));
+        }
     }
 }
