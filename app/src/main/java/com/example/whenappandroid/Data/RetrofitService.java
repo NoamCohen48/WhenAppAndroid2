@@ -24,23 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitService {
     private static ServerAPI api = null;
 
-    private static class UvCookieJar implements CookieJar {
-        private List<Cookie> cookies = new ArrayList<>();
-
-        @NonNull
-        @Override
-        public List<Cookie> loadForRequest(@NonNull HttpUrl httpUrl) {
-            return cookies;
-        }
-
-        @Override
-        public void saveFromResponse(@NonNull HttpUrl httpUrl, @NonNull List<Cookie> list) {
-            cookies.addAll(list);
-        }
-    }
-
     public static ServerAPI getAPI(String url) {
-        if(api == null){
+        if (api == null) {
             OkHttpClient.Builder client = new OkHttpClient.Builder().cookieJar(new UvCookieJar());
 
             Gson gson = new GsonBuilder()
@@ -56,5 +41,20 @@ public class RetrofitService {
             api = retrofit.create(ServerAPI.class);
         }
         return api;
+    }
+
+    private static class UvCookieJar implements CookieJar {
+        private List<Cookie> cookies = new ArrayList<>();
+
+        @NonNull
+        @Override
+        public List<Cookie> loadForRequest(@NonNull HttpUrl httpUrl) {
+            return cookies;
+        }
+
+        @Override
+        public void saveFromResponse(@NonNull HttpUrl httpUrl, @NonNull List<Cookie> list) {
+            cookies.addAll(list);
+        }
     }
 }

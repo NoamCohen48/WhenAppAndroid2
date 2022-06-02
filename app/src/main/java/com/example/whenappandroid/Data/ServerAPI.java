@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ServerAPI {
 
@@ -32,8 +33,54 @@ public interface ServerAPI {
         public String id;
         public String name;
         public String server;
+
+        public ContactPayload(String id, String name, String server) {
+            this.id = id;
+            this.name = name;
+            this.server = server;
+        }
     }
 
     @POST("api/contacts")
     Call<List<Contact>> addContacts(@Body ContactPayload payload);
+
+    @GET("api/contacts/{id}/messages")
+    Call<List<Message>> getMessages(@Path("id") String id);
+
+    class MessagePayload {
+        public String content;
+    }
+
+    @POST("api/contacts/{id}/messages")
+    Call<List<Message>> addMessages(@Path("id") String id, @Body MessagePayload payload);
+
+    class TransferPayload {
+        public String from;
+        public String to;
+        public String content;
+
+        public TransferPayload(String from, String to, String content) {
+            this.from = from;
+            this.to = to;
+            this.content = content;
+        }
+    }
+
+    @POST("api/transfer")
+    Call<List<Message>> transfer(@Body TransferPayload payload);
+
+    class InvitationsPayload {
+        public String from;
+        public String to;
+        public String server;
+
+        public InvitationsPayload(String from, String to, String server) {
+            this.from = from;
+            this.to = to;
+            this.server = server;
+        }
+    }
+
+    @POST("api/invitations")
+    Call<List<Message>> invitations(@Body InvitationsPayload payload);
 }
