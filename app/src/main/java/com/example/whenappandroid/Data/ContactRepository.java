@@ -11,7 +11,7 @@ import com.example.whenappandroid.Data.ContactDao;
 import java.util.List;
 
 public class ContactRepository {
-
+    private ServerAPI api;
     private ContactDao contactDao;
     private LiveData<List<Contact>> allContacts;
 
@@ -23,6 +23,8 @@ public class ContactRepository {
         AppDB db = AppDB.getDatabase(application);
         contactDao = db.contactDao();
         allContacts = contactDao.index();
+
+        RetrofitService.getAPI("http://10.0.2.2:5270");
     }
 
     // Room executes all queries on a separate thread.
