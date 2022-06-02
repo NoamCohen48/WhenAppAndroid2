@@ -11,7 +11,7 @@ import com.example.whenappandroid.Data.ContactRepository;
 import java.util.List;
 
 public class ContactViewModel extends AndroidViewModel {
-
+    private String currentUser = "noam";
     private ContactRepository repository;
 
     private final LiveData<List<Contact>> allContacts;
@@ -24,5 +24,5 @@ public class ContactViewModel extends AndroidViewModel {
 
     public LiveData<List<Contact>> getAllContacts() { return allContacts; }
 
-    public void insert(Contact contact) { repository.insert(contact); }
+    public void insert(Contact contact) { repository.addContact(currentUser, contact); }
 }
