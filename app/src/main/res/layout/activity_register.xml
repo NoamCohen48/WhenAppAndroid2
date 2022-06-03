@@ -69,6 +69,18 @@
             android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/stat_sys_upload" />
 
+        <TextView
+            android:id="@+id/ErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#BD0404"
+            android:textSize="24sp"
+            android:typeface="monospace"
+            tools:text="Test Text" />
+
         <Button
             android:id="@+id/registerBtn"
             android:layout_width="wrap_content"
