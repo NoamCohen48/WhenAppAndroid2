@@ -43,7 +43,7 @@ public interface ServerAPI {
     }
 
     @POST("api/contacts")
-    Call<List<Contact>> addContact(@Body ContactPayload payload);
+    Call<Contact> addContact(@Body ContactPayload payload);
 
     @GET("api/contacts/{id}/messages")
     Call<List<Message>> getMessages(@Path("id") String id);
@@ -57,7 +57,7 @@ public interface ServerAPI {
     }
 
     @POST("api/contacts/{id}/messages")
-    Call<List<Message>> addMessage(@Path("id") String id, @Body MessagePayload payload);
+    Call<Message> addMessage(@Path("id") String id, @Body MessagePayload payload);
 
     class TransferPayload {
         public String from;
@@ -72,7 +72,7 @@ public interface ServerAPI {
     }
 
     @POST("api/transfer")
-    Call<List<Message>> transfer(@Url String hisServer, @Body TransferPayload payload);
+    Call<Void> transfer(@Url String hisServer, @Body TransferPayload payload);
 
     class InvitationsPayload {
         public String from;
@@ -87,5 +87,5 @@ public interface ServerAPI {
     }
 
     @POST("api/invitations")
-    Call<List<Message>> invitations(@Url String hisServer, @Body InvitationsPayload payload);
+    Call<Void> invitations(@Url String hisServer, @Body InvitationsPayload payload);
 }

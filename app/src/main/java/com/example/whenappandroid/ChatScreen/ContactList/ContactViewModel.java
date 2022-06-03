@@ -16,13 +16,17 @@ public class ContactViewModel extends AndroidViewModel {
 
     private final LiveData<List<Contact>> allContacts;
 
-    public ContactViewModel (Application application) {
+    public ContactViewModel(Application application) {
         super(application);
         repository = new ContactRepository(application);
         allContacts = repository.getAllContacts();
     }
 
-    public LiveData<List<Contact>> getAllContacts() { return allContacts; }
+    public LiveData<List<Contact>> getAllContacts() {
+        return allContacts;
+    }
 
-    public void insert(Contact contact) { repository.addContact(currentUser, contact); }
+    public void insert(String username, String nickname, String server) {
+        repository.addContact(currentUser, username, nickname, server);
+    }
 }

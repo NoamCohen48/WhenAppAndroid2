@@ -34,17 +34,23 @@ public class ContactRepository {
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
-    public void addContact(String from, Contact contact) {
-        AppDB.databaseWriteExecutor.execute(() -> {
-            contactDao.insert(contact);
-        });
-
+    public void addContact(String from, String username, String nickname, String server) {
         try{
-            api.addContact(new ServerAPI.ContactPayload(contact.getId(), contact.getName(), contact.getServer())).execute();
-            api.invitations(contact.getServer(), new ServerAPI.InvitationsPayload(from, contact.getId(), serverUrl)).execute();
+            Contact newContact = api.addContact(new ServerAPI.ContactPayload(username, nickname, server)).execute().body();
+
+            if (newContact == null) throw new Exception("server returned null");
+
+            AppDB.databaseWriteExecutor.execute(() -> {
+                contactDao.insert(newContact);
+            });
+
+            api.invitations(server, new ServerAPI.InvitationsPayload(from, username, serverUrl)).execute();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
 
     }
 }

@@ -37,23 +37,19 @@ public class MessageRepository {
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void addMessage(String from, Contact to, String content) {
+        try {
+            Message newMessage = api.addMessage(to.getId(), new ServerAPI.MessagePayload(content)).execute().body();
 
-
-        try{
-            api.addMessage(to.getId(), new ServerAPI.MessagePayload(content)).execute();
-            api.transfer(to.getServer(), new ServerAPI.TransferPayload(from, to.getId(), content)).execute();
-
-            List<Message> messages = api.getMessages(to.getId()).execute().body();
-
-            if(messages == null) return;
+            if (newMessage == null) throw new Exception("server returned null");
 
             AppDB.databaseWriteExecutor.execute(() -> {
-                messageDao.deleteAll();
-                for(Message message : messages){
-                    messageDao.insert(message);
-                }
+                messageDao.insert(newMessage);
             });
+
+            api.transfer(to.getServer(), new ServerAPI.TransferPayload(from, to.getId(), content)).execute();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
