@@ -1,6 +1,13 @@
 package com.example.whenappandroid.Data;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Message {
+
+    @PrimaryKey
     private int id;
     private String content;
     private String created;

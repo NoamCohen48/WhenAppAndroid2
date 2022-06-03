@@ -8,29 +8,25 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.whenappandroid.Data.Contact;
-
 import java.util.List;
 
 @Dao
-public interface ContactDao {
+public interface MessageDao {
+    @Query("SELECT * FROM message")
+    LiveData<List<Message>> getAll();
 
-    @Query("SELECT * FROM contact")
-    LiveData<List<Contact>> getAll();
-
-    @Query("SELECT * FROM contact WHERE id =:id")
-    Contact get(String id);
+    @Query("SELECT * FROM message WHERE id =:id")
+    Message get(int id);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Contact... contacts);
+    void insert(Message... messages);
 
     @Update
-    void update(Contact... contacts);
+    void update(Message... messages);
 
-    @Query("DELETE FROM contact")
+    @Query("DELETE FROM message")
     void deleteAll();
 
     @Delete
-    void delete(Contact... contacts);
-
+    void delete(Message... messages);
 }

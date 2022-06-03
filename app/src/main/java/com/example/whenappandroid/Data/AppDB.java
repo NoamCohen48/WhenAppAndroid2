@@ -11,10 +11,11 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Contact.class}, version = 1, exportSchema = false)
+@Database(entities = {Contact.class, Message.class}, version = 2, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
 
     public abstract ContactDao contactDao();
+    public abstract MessageDao messageDao();
 
     private static volatile AppDB INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
