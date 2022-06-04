@@ -17,9 +17,11 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
         super(diffCallback);
     }
 
+    @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ContactViewHolder(RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.getContext())));
+        @NonNull RecyclerviewItemBinding binding = RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ContactViewHolder(binding);
     }
 
     @Override
