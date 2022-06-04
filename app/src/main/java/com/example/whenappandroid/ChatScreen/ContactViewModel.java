@@ -1,4 +1,4 @@
-package com.example.whenappandroid.ChatScreen.ContactList;
+package com.example.whenappandroid.ChatScreen;
 
 import android.app.Application;
 
@@ -26,7 +26,19 @@ public class ContactViewModel extends AndroidViewModel {
         return allContacts;
     }
 
-    public void insert(String username, String nickname, String server) {
+    // null if ok, error text if there is an error
+    public String insert(String username, String nickname, String server) {
+        if(username == currentUser){
+            return "cant add yourself";
+        }
+
+        if(allContacts.getValue() != null){
+            for(Contact c : allContacts.getValue()){
+                if(c.getId().equals(username)) return "already in";
+            }
+        }
+
         repository.addContact(currentUser, username, nickname, server);
+        return null;
     }
 }

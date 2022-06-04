@@ -12,21 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.whenappandroid.ChatScreen.AddContactActivity;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
-import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
+import com.example.whenappandroid.ChatScreen.ContactViewModel;
 import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
-import com.example.whenappandroid.Data.Contact;
-import com.example.whenappandroid.Data.RetrofitService;
-import com.example.whenappandroid.Data.ServerAPI;
 import com.example.whenappandroid.databinding.ActivityVerticalContactsBinding;
-
-import java.io.IOException;
-import java.util.List;
-
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VerticalContactsActivity extends AppCompatActivity {
     private ActivityVerticalContactsBinding binding;

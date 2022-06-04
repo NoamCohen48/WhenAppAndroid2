@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             binding.confirmPasswordInputBox.setError("you must confirm your password!");
         }
 
-        //TODO: check if password is indeed passord
+        //TODO: check if password is indeed password
 
         if(password.equals(confirmPassword)) {
             binding.confirmPasswordInputBox.setError("the password is not the same");
