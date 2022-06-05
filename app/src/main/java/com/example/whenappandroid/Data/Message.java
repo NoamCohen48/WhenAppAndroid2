@@ -6,14 +6,14 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Message {
-
     @PrimaryKey
+    @NonNull
     private int id;
     private String content;
     private String created;
     private boolean sent;
 
-    public Message(int id, String content, String created, boolean sent) {
+    public Message(@NonNull int id, String content, String created, boolean sent) {
         this.id = id;
         this.content = content;
         this.created = created;

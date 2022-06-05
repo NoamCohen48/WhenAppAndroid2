@@ -20,7 +20,13 @@
         >
         <activity
             android:name=".ChatScreen.Vertical.VerticalMessagesActivity"
-            android:exported="false" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".ChatScreen.AddContactActivity"
             android:exported="false" />
@@ -28,11 +34,7 @@
             android:name=".ChatScreen.Vertical.VerticalContactsActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ChatScreen.Horizontal.ChatHorizontalActivity"

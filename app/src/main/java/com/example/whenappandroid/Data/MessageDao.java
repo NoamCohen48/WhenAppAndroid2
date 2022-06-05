@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface MessageDao {
     @Query("SELECT * FROM message")
-    LiveData<List<Message>> getAll();
+    LiveData<List<Message>> index();
 
     @Query("SELECT * FROM message WHERE id =:id")
     Message get(int id);
