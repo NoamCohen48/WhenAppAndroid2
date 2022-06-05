@@ -22,24 +22,23 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
-    private static ServerAPI api = null;
 
+    private static ServerAPI api;
+    
     public static ServerAPI getAPI(String url) {
-        if (api == null) {
-            OkHttpClient.Builder client = new OkHttpClient.Builder().cookieJar(new UvCookieJar());
+        OkHttpClient.Builder client = new OkHttpClient.Builder().cookieJar(new UvCookieJar());
 
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(client.build())
-                    .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client.build())
+                .build();
 
-            api = retrofit.create(ServerAPI.class);
-        }
+        api = retrofit.create(ServerAPI.class);
         return api;
     }
 
