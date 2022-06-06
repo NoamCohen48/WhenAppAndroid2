@@ -27,8 +27,9 @@ public abstract class AppDB extends RoomDatabase {
             synchronized (AppDB.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDB.class, "ContactDB")
+                                    AppDB.class, "WhenAppDB")
                             .addCallback(sRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
