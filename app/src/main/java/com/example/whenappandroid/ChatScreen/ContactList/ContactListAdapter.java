@@ -29,7 +29,7 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
         Contact current = getItem(position);
-        holder.itemView.setOnClickListener(view -> onListItemClick.onClick(view, holder.getAdapterPosition()));
+        holder.itemView.setOnClickListener((View view) -> onListItemClick.onClick(view, current));
         holder.bind(current);
     }
 
@@ -47,11 +47,11 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
     }
 
     public interface OnListItemClick {
-        void onClick(View view, int position);
+        void onClick(View view, Contact contact);
     }
 
-    public void setItemClickListener(OnListItemClick context) {
-        this.onListItemClick = context;
+    public void setItemClickListener(OnListItemClick callback) {
+        this.onListItemClick = callback;
     }
 
 }

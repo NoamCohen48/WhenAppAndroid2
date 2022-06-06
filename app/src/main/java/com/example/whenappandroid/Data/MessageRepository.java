@@ -30,7 +30,7 @@ public class MessageRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public LiveData<List<Message>> getAllMessages() {
+    public LiveData<List<Message>> getMessages() {
         return allMessages;
     }
 

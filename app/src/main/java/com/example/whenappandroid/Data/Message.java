@@ -7,14 +7,15 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Message {
     @PrimaryKey
-    @NonNull
     private int id;
+    private String contact;
     private String content;
     private String created;
     private boolean sent;
 
-    public Message(@NonNull int id, String content, String created, boolean sent) {
+    public Message(int id, String contact, String content, String created, boolean sent) {
         this.id = id;
+        this.contact = contact;
         this.content = content;
         this.created = created;
         this.sent = sent;
@@ -26,6 +27,14 @@ public class Message {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getContent() {
@@ -52,10 +61,12 @@ public class Message {
         this.sent = sent;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
+                ", contact='" + contact + '\'' +
                 ", content='" + content + '\'' +
                 ", created='" + created + '\'' +
                 ", sent=" + sent +
