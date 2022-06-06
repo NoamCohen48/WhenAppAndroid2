@@ -23,14 +23,14 @@ public class MessageRepository {
     public MessageRepository(Application application) {
         AppDB db = AppDB.getDatabase(application);
         messageDao = db.messageDao();
-        allMessages = messageDao.getAll();
+        allMessages = messageDao.index();
 
         api = RetrofitService.getAPI(serverUrl);
     }
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    public LiveData<List<Message>> getAllContacts() {
+    public LiveData<List<Message>> getAllMessages() {
         return allMessages;
     }
 
