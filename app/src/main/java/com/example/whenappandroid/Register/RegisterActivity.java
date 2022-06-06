@@ -3,18 +3,28 @@ package com.example.whenappandroid.Register;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
+import com.example.whenappandroid.Login.LoginActivity;
+import com.example.whenappandroid.Login.LoginViewModel;
 import com.example.whenappandroid.databinding.ActivityRegisterBinding;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
-    private final int GALLERY_REQ_CODE = 1000;
+    private RegisterViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +32,10 @@ public class RegisterActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+
         binding.registerBtn.setOnClickListener(v -> {
-            checkDataEntered();
+            register();
         });
 
         ActivityResultLauncher<String[]> imagePicker =
@@ -36,40 +48,47 @@ public class RegisterActivity extends AppCompatActivity {
             imagePicker.launch(new String[]{"image/*"});
         });
     }
-    boolean isEmpty(EditText text) {
-        CharSequence str = text.getText().toString();
-        return TextUtils.isEmpty(str);
-    }
-    boolean isPassword(EditText text){
-        String t = text.getText().toString();
-        //String regex = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
-        //return t.matches(regex);
-        return true;
-    }
-    boolean isSame(EditText text1, EditText text2){
-        String p = text1.getText().toString();
-        String c = text2.getText().toString();
-        return (p.equals(c));
-    }
-    void checkDataEntered() {
-        if(isEmpty(binding.usernameInputBox)) {
+
+    void register() {
+        String username = binding.usernameInputBox.getText().toString();
+        String nickname = binding.nicknameInputBox.getText().toString();
+        String password = binding.passwordInputBox.getText().toString();
+        String confirmPassword = binding.confirmPasswordInputBox.getText().toString();
+
+        if(username.isEmpty()) {
             binding.usernameInputBox.setError("you must enter user name");
         }
-        if(isEmpty(binding.nicknameInputBox)) {
+        if(nickname.isEmpty()) {
             binding.nicknameInputBox.setError("you must enter nick name!");
         }
-        if(isEmpty(binding.passwordInputBox)) {
+        if(password.isEmpty()) {
             binding.passwordInputBox.setError("you must enter password!");
         }
-        if(isEmpty(binding.confirmPasswordInputBox)) {
+        if(confirmPassword.isEmpty()) {
             binding.confirmPasswordInputBox.setError("you must confirm your password!");
         }
-        if(!isPassword(binding.passwordInputBox)) {
-            binding.passwordInputBox.setError("Must contain at least one number and one uppercase" +
-                    " and lowercase letter, and at least 8 or more characters");
-        }
-        if(!isSame(binding.passwordInputBox,binding.confirmPasswordInputBox)) {
+
+        //TODO: check if password is indeed password
+
+        if(password.equals(confirmPassword)) {
             binding.confirmPasswordInputBox.setError("the password is not the same");
         }
+
+        viewModel.register(username, password).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() == null) {
+                    binding.ErrorText.setText("this username already exist");
+                }
+
+                Intent intent = new Intent(RegisterActivity.this, VerticalContactsActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                binding.ErrorText.setText("Error connecting to server");
+            }
+        });
     }
 }

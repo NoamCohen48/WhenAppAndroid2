@@ -13,7 +13,7 @@ import com.example.whenappandroid.R;
 import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 
 class ContactViewHolder extends RecyclerView.ViewHolder {
-    private RecyclerviewItemBinding binding;
+    private final RecyclerviewItemBinding binding;
 
     public ContactViewHolder(RecyclerviewItemBinding binding) {
         super(binding.getRoot());
@@ -21,10 +21,10 @@ class ContactViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Contact contact) {
-        binding.dateText.setText(contact.getLastdate());
-        binding.lastText.setText(contact.getLast());
-        binding.nameText.setText(contact.getName());
-        binding.Impo.setText(contact.getName());
+        binding.lastDate.setText(contact.getLastdate());
+        binding.lastMessage.setText(contact.getLast());
+        binding.contactName.setText(contact.getName());
+
     }
 
 }

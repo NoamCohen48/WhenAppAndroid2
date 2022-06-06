@@ -50,7 +50,5 @@ public class ContactRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }

@@ -3,6 +3,7 @@ package com.example.whenappandroid.ChatScreen.Vertical;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -12,11 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.whenappandroid.ChatScreen.AddContactActivity;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
-import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
+import com.example.whenappandroid.ChatScreen.ContactViewModel;
 import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
-import com.example.whenappandroid.Data.Contact;
-import com.example.whenappandroid.Data.RetrofitService;
-import com.example.whenappandroid.Data.ServerAPI;
 import com.example.whenappandroid.databinding.ActivityVerticalContactsBinding;
 
 import java.io.IOException;
@@ -41,6 +39,10 @@ public class VerticalContactsActivity extends AppCompatActivity {
         final ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.ContactDiff());
         binding.recyclerview.setAdapter(adapter);
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setItemClickListener((view12, position) -> {
+            Intent intent = new Intent(this, VerticalMessagesActivity.class);
+            startActivity(intent);
+        });
 
         ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
         // Update the cached copy of the words in the adapter.
@@ -57,7 +59,8 @@ public class VerticalContactsActivity extends AppCompatActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            startActivity(new Intent(this, ChatHorizontalActivity.class));
+            Intent intent = new Intent(this, ChatHorizontalActivity.class);
+            startActivity(intent);
         }
     }
 }
