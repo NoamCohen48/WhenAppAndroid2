@@ -52,9 +52,9 @@ public abstract class AppDB extends RoomDatabase {
                 MessageDao messageDao = INSTANCE.messageDao();
                 dao.deleteAll();
 
-                Contact shaked = new Contact("1", "shaked", "a", "hey", "now");
-                Contact noam = new Contact("2", "noam", "a", "hi", "then");
-                Contact roi = new Contact("3", "roi", "a", "helo", "year ago");
+                Contact shaked = new Contact("shaked", "shaked", "a", "hey", "now");
+                Contact noam = new Contact("noam", "noam", "a", "hi", "then");
+                Contact roi = new Contact("roi", "roi", "a", "helo", "year ago");
                 dao.insert(shaked);
                 dao.insert(noam);
                 dao.insert(roi);

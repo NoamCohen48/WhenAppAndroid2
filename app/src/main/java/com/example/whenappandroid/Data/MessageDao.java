@@ -12,8 +12,8 @@ import java.util.List;
 
 @Dao
 public interface MessageDao {
-    @Query("SELECT * FROM message")
-    LiveData<List<Message>> index();
+    @Query("SELECT * FROM message WHERE contact = :with")
+    LiveData<List<Message>> getMessages(String with);
 
     @Query("SELECT * FROM message WHERE id =:id")
     Message get(int id);

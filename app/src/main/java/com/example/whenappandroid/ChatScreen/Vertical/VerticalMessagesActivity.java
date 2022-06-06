@@ -30,7 +30,9 @@ public class VerticalMessagesActivity extends AppCompatActivity {
 
         MessageViewModel messageViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
        //Update the cached copy of the words in the adapter.
-        messageViewModel.getMessages(currentContact).observe(this, adapter::submitList);
+        messageViewModel.getMessages(currentContact).observe(this, list -> {
+            adapter.submitList(list);
+        });
 
     }
 }
