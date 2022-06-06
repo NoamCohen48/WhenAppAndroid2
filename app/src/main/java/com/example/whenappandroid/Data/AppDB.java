@@ -49,6 +49,7 @@ public abstract class AppDB extends RoomDatabase {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
                 ContactDao dao = INSTANCE.contactDao();
+                MessageDao messageDao = INSTANCE.messageDao();
                 dao.deleteAll();
 
                 Contact shaked = new Contact("1", "shaked", "a", "hey", "now");
@@ -57,6 +58,12 @@ public abstract class AppDB extends RoomDatabase {
                 dao.insert(shaked);
                 dao.insert(noam);
                 dao.insert(roi);
+                Message message1 = new Message(1,"shaked", "hello","1/6/22", true);
+                Message message2 = new Message(2,"shaked", "world","1/6/22", false);
+                Message message3 = new Message(3,"noam", "hi","1/6/22", true);
+                messageDao.insert(message1);
+                messageDao.insert(message2);
+                messageDao.insert(message3);
             });
         }
     };

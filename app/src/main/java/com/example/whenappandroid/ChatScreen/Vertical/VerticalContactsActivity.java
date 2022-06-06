@@ -3,7 +3,6 @@ package com.example.whenappandroid.ChatScreen.Vertical;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,6 +14,7 @@ import com.example.whenappandroid.ChatScreen.AddContactActivity;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
 import com.example.whenappandroid.ChatScreen.ContactViewModel;
 import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
+import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.databinding.ActivityVerticalContactsBinding;
 
 public class VerticalContactsActivity extends AppCompatActivity {
@@ -30,8 +30,9 @@ public class VerticalContactsActivity extends AppCompatActivity {
         final ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.ContactDiff());
         binding.recyclerview.setAdapter(adapter);
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setItemClickListener((view12, position) -> {
+        adapter.setItemClickListener((v, contact) -> {
             Intent intent = new Intent(this, VerticalMessagesActivity.class);
+            intent.putExtra("contact", contact);
             startActivity(intent);
         });
 
