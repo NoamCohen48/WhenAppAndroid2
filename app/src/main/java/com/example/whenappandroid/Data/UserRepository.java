@@ -18,7 +18,6 @@ public class UserRepository {
             return api.register(new ServerAPI.UtilsPayload(username, password));
     }
 
-
     private static UserRepository instance;
 
     private UserRepository() {

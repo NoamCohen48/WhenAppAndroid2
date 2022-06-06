@@ -1,6 +1,7 @@
 package com.example.whenappandroid.ChatScreen.ContactList;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 
 public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> {
+    private OnListItemClick onListItemClick;
 
     public ContactListAdapter(@NonNull DiffUtil.ItemCallback<Contact> diffCallback) {
         super(diffCallback);
@@ -19,7 +21,7 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
 
     @NonNull
     @Override
-    public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         @NonNull RecyclerviewItemBinding binding = RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ContactViewHolder(binding);
     }
@@ -27,6 +29,7 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
         Contact current = getItem(position);
+        holder.itemView.setOnClickListener(view -> onListItemClick.onClick(view, holder.getAdapterPosition()));
         holder.bind(current);
     }
 
@@ -42,4 +45,13 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
             return oldItem.toString().equals(newItem.toString());
         }
     }
+
+    public interface OnListItemClick {
+        void onClick(View view, int position);
+    }
+
+    public void setItemClickListener(OnListItemClick context) {
+        this.onListItemClick = context;
+    }
+
 }

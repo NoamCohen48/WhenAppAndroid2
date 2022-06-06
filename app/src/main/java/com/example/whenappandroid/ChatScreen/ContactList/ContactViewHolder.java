@@ -13,7 +13,7 @@ import com.example.whenappandroid.R;
 import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 
 class ContactViewHolder extends RecyclerView.ViewHolder {
-    private RecyclerviewItemBinding binding;
+    private final RecyclerviewItemBinding binding;
 
     public ContactViewHolder(RecyclerviewItemBinding binding) {
         super(binding.getRoot());
