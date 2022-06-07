@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
-import com.example.whenappandroid.Data.CurrentUser;
 import com.example.whenappandroid.Register.RegisterActivity;
 import com.example.whenappandroid.databinding.ActivityLoginBinding;
 
@@ -38,16 +37,22 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginBtn.setOnClickListener(v -> {
             String username = binding.usernameInputBox.getText().toString();
             String password = binding.passwordInputBox.getText().toString();
-            CurrentUser.currentUser = username;
-            viewModel.login(username, password).enqueue(new Callback<String>() {
+
+            viewModel.login(username, password, new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.body() == null) {
+                    if (response.code() == 400) {
                         binding.ErrorText.setText("Combination is incorrect");
+                        return;
                     }
 
-                    Intent intent = new Intent(LoginActivity.this, VerticalContactsActivity.class);
-                    startActivity(intent);
+                    if (response.code() == 200){
+                        Intent intent = new Intent(LoginActivity.this, VerticalContactsActivity.class);
+                        startActivity(intent);
+                        return;
+                    }
+
+                    binding.ErrorText.setText("Error connecting to server");
                 }
 
                 @Override
