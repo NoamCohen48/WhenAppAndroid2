@@ -18,6 +18,6 @@ public class MessageViewHolder extends RecyclerView.ViewHolder{
 //        binding.setText(message.getContent());
 //        binding.textGchatDateOther.setText(message.getCreated());
         binding.textGchatMessageMe.setText(message.getContent());
-        binding.textGchatTimestampMe.setText(message.getCreated());
+        binding.textGchatTimestampMe.setText(message.getCreated().substring(11, 16));
     }
 }
