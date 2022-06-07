@@ -1,21 +1,14 @@
 package com.example.whenappandroid.ChatScreen.ContactList;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whenappandroid.Data.Contact;
-import com.example.whenappandroid.R;
-import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
+import com.example.whenappandroid.databinding.RecyclerviewContactBinding;
 
 class ContactViewHolder extends RecyclerView.ViewHolder {
-    private final RecyclerviewItemBinding binding;
+    private final RecyclerviewContactBinding binding;
 
-    public ContactViewHolder(RecyclerviewItemBinding binding) {
+    public ContactViewHolder(RecyclerviewContactBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }

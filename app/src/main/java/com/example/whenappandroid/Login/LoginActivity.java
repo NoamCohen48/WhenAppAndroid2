@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
+import com.example.whenappandroid.Data.CurrentUser;
 import com.example.whenappandroid.Register.RegisterActivity;
 import com.example.whenappandroid.databinding.ActivityLoginBinding;
 
@@ -37,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginBtn.setOnClickListener(v -> {
             String username = binding.usernameInputBox.getText().toString();
             String password = binding.passwordInputBox.getText().toString();
-
+            CurrentUser.currentUser = username;
             viewModel.login(username, password).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {

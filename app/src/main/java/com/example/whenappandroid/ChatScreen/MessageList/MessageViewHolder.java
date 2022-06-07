@@ -2,11 +2,8 @@ package com.example.whenappandroid.ChatScreen.MessageList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.Data.Message;
-import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 import com.example.whenappandroid.databinding.RecycleMessagesByMeBinding;
-import com.example.whenappandroid.databinding.RecycleMessagesByOtherBinding;
 
 
 

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.whenappandroid.Data.Contact;
-import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
+import com.example.whenappandroid.databinding.RecyclerviewContactBinding;
 
 public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> {
     private OnListItemClick onListItemClick;
@@ -21,7 +21,7 @@ public class ContactListAdapter extends ListAdapter<Contact, ContactViewHolder> 
     @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        @NonNull RecyclerviewItemBinding binding = RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        @NonNull RecyclerviewContactBinding binding = RecyclerviewContactBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ContactViewHolder(binding);
     }
 

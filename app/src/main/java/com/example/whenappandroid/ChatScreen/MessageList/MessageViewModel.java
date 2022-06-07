@@ -12,9 +12,8 @@ import com.example.whenappandroid.Data.MessageRepository;
 import java.util.List;
 
 public class MessageViewModel extends AndroidViewModel {
-    private MessageRepository repository;
-    private String currentUser = "noam";
-    
+    public MessageRepository repository;
+
     public MessageViewModel (Application application) {
         super(application);
         repository = new MessageRepository(application);
@@ -22,5 +21,5 @@ public class MessageViewModel extends AndroidViewModel {
 
     public LiveData<List<Message>> getMessages(Contact currentContact) { return repository.getMessages(currentContact.getId()); }
 
-    public void insert(Contact currentContact, String content) { repository.addMessage(currentUser, currentContact, content); }
+    public void insert(String from, Contact to, String content) { repository.addMessage(from, to, content); }
 }

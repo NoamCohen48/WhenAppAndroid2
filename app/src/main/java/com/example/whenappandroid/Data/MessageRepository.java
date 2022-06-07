@@ -10,8 +10,6 @@ import java.util.List;
 public class MessageRepository {
     private String serverUrl = "http://10.0.2.2:5270/";
 
-    private String currentContact = null;
-
     private ServerAPI api;
     private MessageDao messageDao;
 
