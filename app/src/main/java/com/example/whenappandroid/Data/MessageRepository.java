@@ -7,47 +7,65 @@ import androidx.lifecycle.LiveData;
 import java.io.IOException;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MessageRepository {
     private String serverUrl = "http://10.0.2.2:5270/";
 
     private ServerAPI api;
     private MessageDao messageDao;
+    private ContactDao contactDao;
 
-    // Note that in order to unit test the WordRepository, you have to remove the Application
-    // dependency. This adds complexity and much more code, and this sample is not about testing.
-    // See the BasicSample in the android-architecture-components repository at
-    // https://github.com/googlesamples
     public MessageRepository(Application application) {
         AppDB db = AppDB.getDatabase(application);
         messageDao = db.messageDao();
 
+
         api = RetrofitService.getAPI(serverUrl);
     }
 
-    // Room executes all queries on a separate thread.
-    // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Message>> getMessages(String with) {
         return messageDao.getMessages(with);
     }
 
-    // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-    // that you're not doing any long running operations on the main thread, blocking the UI.
     public void addMessage(String from, Contact to, String content) {
-        try {
-            Message newMessage = api.addMessage(to.getId(), new ServerAPI.MessagePayload(content)).execute().body();
+        api.addMessage(to.getId(), new ServerAPI.MessagePayload(content)).enqueue(new Callback<Message>() {
+            @Override
+            public void onResponse(Call<Message> call, Response<Message> response) {
+                if (response.code() == 200) {
+                    Message message = response.body();
+                    message.setContact(to.getId());
+                    messageDao.insert(message);
 
-            if (newMessage == null) throw new Exception("server returned null");
+                    to.setLast(message.getContent());
+                    to.setLastdate(message.getCreated());
+                }
+            }
 
-            AppDB.databaseWriteExecutor.execute(() -> {
-                messageDao.insert(newMessage);
-            });
+            @Override
+            public void onFailure(Call<Message> call, Throwable t) {
+                int x = 1;
+            }
+        });
 
-            api.transfer(to.getServer(), new ServerAPI.TransferPayload(from, to.getId(), content)).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        String otherServer = to.getServer();
+//        if (otherServer.contains("localhost")) {
+//            otherServer = otherServer.replace("localhost", "10.0.2.2");
+//        }
+//        ServerAPI otherApi = RetrofitService.getAPI(otherServer);
+//        otherApi.transfer(new ServerAPI.TransferPayload(from, to.getId(), content)).enqueue(new Callback<Void>() {
+//            @Override
+//            public void onResponse(Call<Void> call, Response<Void> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Void> call, Throwable t) {
+//
+//            }
+//        });
 
     }
 }

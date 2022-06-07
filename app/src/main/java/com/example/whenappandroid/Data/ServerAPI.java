@@ -72,7 +72,7 @@ public interface ServerAPI {
     }
 
     @POST("api/transfer")
-    Call<Void> transfer(@Url String hisServer, @Body TransferPayload payload);
+    Call<Void> transfer(@Body TransferPayload payload);
 
     class InvitationsPayload {
         public String from;

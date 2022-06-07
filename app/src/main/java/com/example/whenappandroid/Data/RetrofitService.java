@@ -9,7 +9,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
@@ -23,10 +25,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
-    private static ServerAPI api;
-    
+    private static Map<String, ServerAPI> map = new HashMap<>();
+
     public static ServerAPI getAPI(String url) {
-        OkHttpClient.Builder client = new OkHttpClient.Builder().cookieJar(new UvCookieJar());
+        if (map.containsKey(url)) {
+            return map.get(url);
+        }
+
+        OkHttpClient.Builder client = new OkHttpClient.Builder()
+                .cookieJar(new UvCookieJar());
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -38,7 +45,8 @@ public class RetrofitService {
                 .client(client.build())
                 .build();
 
-        api = retrofit.create(ServerAPI.class);
+        ServerAPI api = retrofit.create(ServerAPI.class);
+        map.put(url, api);
         return api;
     }
 

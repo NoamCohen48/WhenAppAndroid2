@@ -23,7 +23,7 @@ public class MessageViewModel extends AndroidViewModel {
         return repository.getMessages(currentContact.getId());
     }
 
-    public void insert(String from, Contact to, String content) {
+    public void addMessage(String from, Contact to, String content) {
         repository.addMessage(from, to, content);
     }
 }

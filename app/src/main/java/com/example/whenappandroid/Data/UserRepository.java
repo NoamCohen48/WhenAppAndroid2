@@ -44,7 +44,7 @@ public class UserRepository {
                                 if(response.code() == 200){
                                     List<Message> messages = response.body();
                                     for(Message m : messages){
-                                        m.setContact(currentUser);
+                                        m.setContact(c.getId());
                                     }
                                     messagesDao.insertAllOrders(messages);
                                 }
