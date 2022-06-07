@@ -21,5 +21,5 @@ public class MessageViewModel extends AndroidViewModel {
 
     public LiveData<List<Message>> getMessages(Contact currentContact) { return repository.getMessages(currentContact.getId()); }
 
-    public void insert(String from, Contact to, String content) { repository.addMessage(from, to, content); }
+    public void insert(String from, Contact to, String content) {   repository.addMessage(from, to, content); }
 }
