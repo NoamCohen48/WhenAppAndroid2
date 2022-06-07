@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
+import com.example.whenappandroid.Data.Globals;
 import com.example.whenappandroid.Register.RegisterActivity;
 import com.example.whenappandroid.databinding.ActivityLoginBinding;
 
@@ -46,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     }
 
-                    if (response.code() == 200){
+                    if (response.code() == 200) {
+                        Globals.currentUser = username;
                         Intent intent = new Intent(LoginActivity.this, VerticalContactsActivity.class);
                         startActivity(intent);
                         return;

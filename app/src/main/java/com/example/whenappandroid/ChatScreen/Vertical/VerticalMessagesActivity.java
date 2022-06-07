@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.whenappandroid.ChatScreen.MessageList.MessageListAdapter;
 import com.example.whenappandroid.ChatScreen.MessageList.MessageViewModel;
 import com.example.whenappandroid.Data.Contact;
-import com.example.whenappandroid.Data.CurrentUser;
+import com.example.whenappandroid.Data.Globals;
 import com.example.whenappandroid.databinding.ActivityVerticalMessagesBinding;
 
 public class VerticalMessagesActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         });
 
         binding.buttonGchatSend.setOnClickListener(v -> {
-            String from = CurrentUser.currentUser;
+            String from = Globals.currentUser;
             String content = binding.textInputMessage.getText().toString();
 
             viewModel.insert(from, currentContact, content);

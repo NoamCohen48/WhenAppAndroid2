@@ -14,12 +14,16 @@ import java.util.List;
 public class MessageViewModel extends AndroidViewModel {
     public MessageRepository repository;
 
-    public MessageViewModel (Application application) {
+    public MessageViewModel(Application application) {
         super(application);
         repository = new MessageRepository(application);
     }
 
-    public LiveData<List<Message>> getMessages(Contact currentContact) { return repository.getMessages(currentContact.getId()); }
+    public LiveData<List<Message>> getMessages(Contact currentContact) {
+        return repository.getMessages(currentContact.getId());
+    }
 
-    public void insert(String from, Contact to, String content) { repository.addMessage(from, to, content); }
+    public void insert(String from, Contact to, String content) {
+        repository.addMessage(from, to, content);
+    }
 }

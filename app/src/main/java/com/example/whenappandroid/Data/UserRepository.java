@@ -43,6 +43,9 @@ public class UserRepository {
                             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                                 if(response.code() == 200){
                                     List<Message> messages = response.body();
+                                    for(Message m : messages){
+                                        m.setContact(currentUser);
+                                    }
                                     messagesDao.insertAllOrders(messages);
                                 }
                             }
