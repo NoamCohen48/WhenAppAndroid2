@@ -14,8 +14,7 @@ import java.util.List;
 public class MessageViewModel extends AndroidViewModel {
     private MessageRepository repository;
     private String currentUser = "noam";
-
-
+    
     public MessageViewModel (Application application) {
         super(application);
         repository = new MessageRepository(application);
