@@ -8,17 +8,19 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.whenappandroid.Data.UserRepository;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 
 public class RegisterViewModel extends AndroidViewModel {
     private UserRepository repository;
 
     public RegisterViewModel(@NonNull Application application) {
         super(application);
-        repository = UserRepository.getInstance();
+        repository = UserRepository.getInstance(application);
     }
 
-    public Call<String> register(String username, String password) {
-        return repository.register(username, password);
+    public void register(String username, String password, Callback<String> callback) {
+        repository.register(username, password).enqueue(callback);
+        repository.loadUser(username);
     }
 
 }

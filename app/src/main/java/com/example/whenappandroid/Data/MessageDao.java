@@ -21,6 +21,9 @@ public interface MessageDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Message... messages);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAllOrders(List<Message> order);
+
     @Update
     void update(Message... messages);
 

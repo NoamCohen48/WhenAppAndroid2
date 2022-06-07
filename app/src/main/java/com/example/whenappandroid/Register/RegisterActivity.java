@@ -54,35 +54,55 @@ public class RegisterActivity extends AppCompatActivity {
         String nickname = binding.nicknameInputBox.getText().toString();
         String password = binding.passwordInputBox.getText().toString();
         String confirmPassword = binding.confirmPasswordInputBox.getText().toString();
+        boolean isCorrect = true;
 
         if(username.isEmpty()) {
             binding.usernameInputBox.setError("you must enter user name");
+            isCorrect = false;
         }
         if(nickname.isEmpty()) {
             binding.nicknameInputBox.setError("you must enter nick name!");
+            isCorrect = false;
+
         }
         if(password.isEmpty()) {
             binding.passwordInputBox.setError("you must enter password!");
+            isCorrect = false;
+
         }
         if(confirmPassword.isEmpty()) {
             binding.confirmPasswordInputBox.setError("you must confirm your password!");
+            isCorrect = false;
+
         }
 
         //TODO: check if password is indeed password
 
-        if(password.equals(confirmPassword)) {
+        if(!password.equals(confirmPassword)) {
             binding.confirmPasswordInputBox.setError("the password is not the same");
+            isCorrect = false;
+
         }
 
-        viewModel.register(username, password).enqueue(new Callback<String>() {
+        if (!isCorrect){
+            return;
+        }
+
+        viewModel.register(username, password, new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (response.body() == null) {
+                if (response.code() == 400) {
                     binding.ErrorText.setText("this username already exist");
+                    return;
                 }
 
-                Intent intent = new Intent(RegisterActivity.this, VerticalContactsActivity.class);
-                startActivity(intent);
+                if (response.code() == 200){
+                    Intent intent = new Intent(RegisterActivity.this, VerticalContactsActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                binding.ErrorText.setText("Error connecting to server");
             }
 
             @Override
