@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import com.example.whenappandroid.ChatScreen.ContactList.ContactViewHolder;
 import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 

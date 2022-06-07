@@ -1,4 +1,4 @@
-package com.example.whenappandroid.ChatScreen;
+package com.example.whenappandroid.ChatScreen.ContactList;
 
 import android.app.Application;
 

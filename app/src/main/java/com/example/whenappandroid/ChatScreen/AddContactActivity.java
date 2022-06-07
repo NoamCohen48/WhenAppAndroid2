@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.whenappandroid.Login.LoginViewModel;
+import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
 import com.example.whenappandroid.databinding.ActivityAddContactBinding;
 
 public class AddContactActivity extends AppCompatActivity {

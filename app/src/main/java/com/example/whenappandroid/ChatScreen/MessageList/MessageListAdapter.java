@@ -1,21 +1,14 @@
 package com.example.whenappandroid.ChatScreen.MessageList;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.Data.Message;
-import com.example.whenappandroid.R;
 import com.example.whenappandroid.databinding.RecycleMessagesByMeBinding;
-import com.example.whenappandroid.databinding.RecycleMessagesByOtherBinding;
-import com.example.whenappandroid.databinding.RecyclerviewItemBinding;
 
 import java.util.List;
 

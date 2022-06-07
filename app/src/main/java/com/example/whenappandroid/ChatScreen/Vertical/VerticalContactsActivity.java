@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.whenappandroid.ChatScreen.AddContactActivity;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
-import com.example.whenappandroid.ChatScreen.ContactViewModel;
+import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
 import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
-import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.databinding.ActivityVerticalContactsBinding;
 
 public class VerticalContactsActivity extends AppCompatActivity {
