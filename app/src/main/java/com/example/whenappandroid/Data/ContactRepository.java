@@ -5,8 +5,11 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import java.io.IOException;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ContactRepository {
     private String serverUrl = "http://10.0.2.2:5270/";
@@ -29,20 +32,23 @@ public class ContactRepository {
     }
 
     public void addContact(String from, String username, String nickname, String server) {
-        try{
-            Contact newContact = api.addContact(new ServerAPI.ContactPayload(username, nickname, server)).execute().body();
+        api.addContact(new ServerAPI.ContactPayload(username, nickname, server)).enqueue(new Callback<Contact>() {
+            @Override
+            public void onResponse(Call<Contact> call, Response<Contact> response) {
+                if (response.code() == 200) {
+                    Contact contact = response.body();
+                    contactDao.insert(contact);
+                }
+            }
 
-            if (newContact == null) throw new Exception("server returned null");
-
-            AppDB.databaseWriteExecutor.execute(() -> {
-                contactDao.insert(newContact);
-            });
-
-            api.invitations(server, new ServerAPI.InvitationsPayload(from, username, serverUrl)).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onFailure(Call<Contact> call, Throwable t) {
+                try {
+                    throw new Exception(t.getMessage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
