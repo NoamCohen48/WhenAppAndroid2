@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import com.example.whenappandroid.Data.Message;
 import com.example.whenappandroid.databinding.RecycleMessagesByMeBinding;
 
-import java.util.List;
-
 public class MessageListAdapter  extends ListAdapter<Message, MessageViewHolder> {
-    private List<Message> messageList;
 
     public MessageListAdapter(@NonNull DiffUtil.ItemCallback<Message> diffCallback) {
         super(diffCallback);
@@ -28,11 +25,6 @@ public class MessageListAdapter  extends ListAdapter<Message, MessageViewHolder>
     public void onBindViewHolder(MessageViewHolder holder, int position) {
         Message current = getItem(position);
         holder.bind(current);
-    }
-
-    public void setMessageList(List<Message> m){
-        messageList = m;
-        notifyDataSetChanged();
     }
 
     static public class MessageDiff extends DiffUtil.ItemCallback<Message> {

@@ -14,7 +14,10 @@ import com.example.whenappandroid.ChatScreen.AddContactActivity;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactListAdapter;
 import com.example.whenappandroid.ChatScreen.ContactList.ContactViewModel;
 import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
+import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.databinding.ActivityVerticalContactsBinding;
+
+import java.util.List;
 
 public class VerticalContactsActivity extends AppCompatActivity {
     private ActivityVerticalContactsBinding binding;
@@ -26,7 +29,7 @@ public class VerticalContactsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        final ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.ContactDiff());
+        ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.ContactDiff());
         binding.recyclerview.setAdapter(adapter);
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter.setItemClickListener((v, contact) -> {
@@ -37,7 +40,9 @@ public class VerticalContactsActivity extends AppCompatActivity {
 
         ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
         // Update the cached copy of the words in the adapter.
-        contactViewModel.getAllContacts().observe(this, adapter::submitList);
+        contactViewModel.getAllContacts().observe(this, (List<Contact> list) -> {
+            adapter.submitList(list);
+        });
 
 
         binding.btnAddContact.setOnClickListener(view1 -> {
