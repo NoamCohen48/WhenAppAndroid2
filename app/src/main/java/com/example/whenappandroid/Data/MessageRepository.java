@@ -50,10 +50,7 @@ public class MessageRepository {
             }
         });
 
-//        String otherServer = to.getServer();
-//        if (otherServer.contains("localhost")) {
-//            otherServer = otherServer.replace("localhost", "10.0.2.2");
-//        }
+//        String otherServer = to.getServer().replace("localhost", "10.0.2.2");
 //        ServerAPI otherApi = RetrofitService.getAPI(otherServer);
 //        otherApi.transfer(new ServerAPI.TransferPayload(from, to.getId(), content)).enqueue(new Callback<Void>() {
 //            @Override
@@ -66,6 +63,5 @@ public class MessageRepository {
 //
 //            }
 //        });
-
     }
 }

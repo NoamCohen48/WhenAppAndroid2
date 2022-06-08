@@ -1,19 +1,16 @@
 package com.example.whenappandroid.Register;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-
 import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
-import com.example.whenappandroid.Login.LoginActivity;
-import com.example.whenappandroid.Login.LoginViewModel;
+import com.example.whenappandroid.Data.Globals;
 import com.example.whenappandroid.databinding.ActivityRegisterBinding;
 
 import retrofit2.Call;
@@ -56,21 +53,21 @@ public class RegisterActivity extends AppCompatActivity {
         String confirmPassword = binding.confirmPasswordInputBox.getText().toString();
         boolean isCorrect = true;
 
-        if(username.isEmpty()) {
+        if (username.isEmpty()) {
             binding.usernameInputBox.setError("you must enter user name");
             isCorrect = false;
         }
-        if(nickname.isEmpty()) {
+        if (nickname.isEmpty()) {
             binding.nicknameInputBox.setError("you must enter nick name!");
             isCorrect = false;
 
         }
-        if(password.isEmpty()) {
+        if (password.isEmpty()) {
             binding.passwordInputBox.setError("you must enter password!");
             isCorrect = false;
 
         }
-        if(confirmPassword.isEmpty()) {
+        if (confirmPassword.isEmpty()) {
             binding.confirmPasswordInputBox.setError("you must confirm your password!");
             isCorrect = false;
 
@@ -78,13 +75,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         //TODO: check if password is indeed password
 
-        if(!password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
             binding.confirmPasswordInputBox.setError("the password is not the same");
             isCorrect = false;
 
         }
 
-        if (!isCorrect){
+        if (!isCorrect) {
             return;
         }
 
@@ -96,7 +93,8 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (response.code() == 200){
+                if (response.code() == 200) {
+                    Globals.currentUser = username;
                     Intent intent = new Intent(RegisterActivity.this, VerticalContactsActivity.class);
                     startActivity(intent);
                     return;

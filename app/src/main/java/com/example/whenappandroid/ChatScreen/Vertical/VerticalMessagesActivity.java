@@ -33,7 +33,6 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         binding.recyclerGchat.setLayoutManager(new LinearLayoutManager(this));
 
         viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
-        //Update the cached copy of the words in the adapter.
         viewModel.getMessages(currentContact).observe(this, list -> {
             adapter.submitList(list);
             adapter.notifyDataSetChanged();
