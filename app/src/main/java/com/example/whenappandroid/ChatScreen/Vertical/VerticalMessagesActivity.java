@@ -48,14 +48,13 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         currentContact = (Contact) getIntent().getSerializableExtra("contact");
         allMessages = messageDao.Index();
 
-        final MessageListAdapter adapter = new MessageListAdapter(this,allMessages);
+        final MessageListAdapter adapter = new MessageListAdapter(this, allMessages);
         binding.recyclerGchat.setAdapter(adapter);
         binding.recyclerGchat.setLayoutManager(new LinearLayoutManager(this));
 
         viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
         viewModel.getMessages(currentContact).observe(this, list -> {
             adapter.submitList(list);
-            adapter.notifyDataSetChanged();
         });
 
         binding.buttonGchatSend.setOnClickListener(v -> {

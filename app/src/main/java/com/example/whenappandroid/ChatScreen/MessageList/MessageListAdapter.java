@@ -43,7 +43,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public void setMessageList(List<Message> m){
+    public void submitList(List<Message> m) {
         messageList = m;
         notifyDataSetChanged();
     }
@@ -55,9 +55,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if(messageList.get(position).isSent()) {
+        if (messageList.get(position).isSent()) {
             return MESSAGE_TYPE_IN;
-        };
+        }
         return MESSAGE_TYPE_OUT;
     }
 
