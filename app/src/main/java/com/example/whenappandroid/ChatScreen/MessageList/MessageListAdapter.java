@@ -12,26 +12,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.whenappandroid.Data.Message;
 import com.example.whenappandroid.databinding.RecycleMessagesByMeBinding;
 import com.example.whenappandroid.databinding.RecycleMessagesByOtherBinding;
+import com.example.whenappandroid.databinding.RecyclerviewContactBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Message> messageList;
+    private List<Message> messageList = new ArrayList<>();
     public static final int MESSAGE_TYPE_IN = 1;
     public static final int MESSAGE_TYPE_OUT = 2;
-    private Context context;
 
-    public MessageListAdapter(Context context, @NonNull List<Message> messageList) {
-        this.messageList = messageList;
-        this.context = context;
-    }
-
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == MESSAGE_TYPE_IN) {
-            return new MessageInViewHolder(RecycleMessagesByMeBinding.inflate(LayoutInflater.from(parent.getContext())));
+            @NonNull RecycleMessagesByMeBinding binding = RecycleMessagesByMeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new MessageInViewHolder(binding);
         }
-        return new MessageOutViewHolder(RecycleMessagesByOtherBinding.inflate(LayoutInflater.from(parent.getContext())));
+        @NonNull RecycleMessagesByOtherBinding binding = RecycleMessagesByOtherBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new MessageOutViewHolder(binding);
     }
 
     @Override

@@ -19,13 +19,13 @@ public interface ContactDao {
     LiveData<List<Contact>> getAll();
 
     @Query("SELECT * FROM contact WHERE id =:id")
-    Contact get(String id);
+    LiveData<Contact> get(String id);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Contact... contacts);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllOrders(List<Contact> order);
+    void insertAll(List<Contact> order);
 
     @Update
     void update(Contact... contacts);

@@ -12,8 +12,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MessageRepository {
-    private String serverUrl = "http://10.0.2.2:5270/";
-
     private ServerAPI api;
     private MessageDao messageDao;
     private ContactDao contactDao;
@@ -23,7 +21,7 @@ public class MessageRepository {
         messageDao = db.messageDao();
 
 
-        api = RetrofitService.getAPI(serverUrl);
+        api = RetrofitService.getAPI(Globals.server);
     }
 
     public LiveData<List<Message>> getMessages(String with) {
@@ -46,7 +44,7 @@ public class MessageRepository {
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                int x = 1;
+                t.printStackTrace();
             }
         });
 

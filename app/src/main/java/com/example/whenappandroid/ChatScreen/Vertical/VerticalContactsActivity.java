@@ -39,9 +39,9 @@ public class VerticalContactsActivity extends AppCompatActivity {
         });
 
         ContactViewModel contactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
-        // Update the cached copy of the words in the adapter.
         contactViewModel.getAllContacts().observe(this, (List<Contact> list) -> {
             adapter.submitList(list);
+            adapter.notifyDataSetChanged();
         });
 
 

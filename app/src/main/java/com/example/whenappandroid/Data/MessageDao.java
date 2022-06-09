@@ -12,10 +12,6 @@ import java.util.List;
 
 @Dao
 public interface MessageDao {
-
-    @Query("SELECT * FROM message")
-    List<Message> Index();
-
     @Query("SELECT * FROM message WHERE contact = :with ORDER BY created")
     LiveData<List<Message>> getMessages(String with);
 
@@ -26,7 +22,7 @@ public interface MessageDao {
     void insert(Message... messages);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllOrders(List<Message> order);
+    void insertAll(List<Message> order);
 
     @Update
     void update(Message... messages);

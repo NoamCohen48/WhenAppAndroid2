@@ -27,12 +27,10 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class VerticalMessagesActivity extends AppCompatActivity {
+
     private ActivityVerticalMessagesBinding binding;
     private MessageViewModel viewModel;
     private Contact currentContact;
-    private MessageDao messageDao;
-    private AppDB db;
-    List<Message> allMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +39,23 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        db = Room.databaseBuilder(this, AppDB.class, "WhenAppDB").allowMainThreadQueries().build();
-        messageDao = db.messageDao();
-
+        viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
         currentContact = (Contact) getIntent().getSerializableExtra("contact");
-        allMessages = messageDao.Index();
 
-        final MessageListAdapter adapter = new MessageListAdapter(this, allMessages);
+        MessageListAdapter adapter = new MessageListAdapter();
         binding.recyclerGchat.setAdapter(adapter);
         binding.recyclerGchat.setLayoutManager(new LinearLayoutManager(this));
 
-        viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
+
         viewModel.getMessages(currentContact).observe(this, list -> {
             adapter.submitList(list);
+            binding.recyclerGchat.scrollToPosition(adapter.getItemCount() - 1);
         });
 
         binding.buttonGchatSend.setOnClickListener(v -> {
             sendMessage();
         });
-
     }
 
     private void sendMessage() {

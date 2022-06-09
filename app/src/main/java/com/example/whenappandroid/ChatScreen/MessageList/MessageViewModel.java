@@ -13,6 +13,7 @@ import java.util.List;
 
 public class MessageViewModel extends AndroidViewModel {
     public MessageRepository repository;
+    // LiveData<List<Message>> messages;
 
     public MessageViewModel(Application application) {
         super(application);

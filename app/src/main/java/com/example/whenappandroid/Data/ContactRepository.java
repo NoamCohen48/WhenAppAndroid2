@@ -12,8 +12,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ContactRepository {
-    private String serverUrl = "http://10.0.2.2:5270/";
-
     private ServerAPI api;
     private ContactDao contactDao;
     private LiveData<List<Contact>> allContacts;
@@ -23,8 +21,7 @@ public class ContactRepository {
         contactDao = db.contactDao();
         allContacts = contactDao.getAll();
 
-        api = RetrofitService.getAPI(serverUrl);
-        Log.d("custom", "ContactRepository created");
+        api = RetrofitService.getAPI(Globals.server);
     }
 
     public LiveData<List<Contact>> getAllContacts() {
@@ -43,11 +40,7 @@ public class ContactRepository {
 
             @Override
             public void onFailure(Call<Contact> call, Throwable t) {
-                try {
-                    throw new Exception(t.getMessage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                t.printStackTrace();
             }
         });
     }

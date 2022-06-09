@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 public abstract class AppDB extends RoomDatabase {
 
     public abstract ContactDao contactDao();
+
     public abstract MessageDao messageDao();
 
     private static volatile AppDB INSTANCE;
@@ -37,12 +38,4 @@ public abstract class AppDB extends RoomDatabase {
         }
         return INSTANCE;
     }
-
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-        }
-    };
 }
