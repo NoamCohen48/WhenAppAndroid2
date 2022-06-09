@@ -1,30 +1,24 @@
 package com.example.whenappandroid.ChatScreen.Vertical;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.room.Room;
 
 import com.example.whenappandroid.ChatScreen.MessageList.MessageListAdapter;
 import com.example.whenappandroid.ChatScreen.MessageList.MessageViewModel;
-import com.example.whenappandroid.Data.AppDB;
 import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.Data.Globals;
-import com.example.whenappandroid.Data.Message;
-import com.example.whenappandroid.Data.MessageDao;
+import com.example.whenappandroid.R;
+import com.example.whenappandroid.SettingsScreen.SettingsActivity;
 import com.example.whenappandroid.databinding.ActivityVerticalMessagesBinding;
-import com.google.type.DateTime;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
 
 public class VerticalMessagesActivity extends AppCompatActivity {
 
@@ -56,6 +50,20 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         binding.buttonGchatSend.setOnClickListener(v -> {
             sendMessage();
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 
     private void sendMessage() {
