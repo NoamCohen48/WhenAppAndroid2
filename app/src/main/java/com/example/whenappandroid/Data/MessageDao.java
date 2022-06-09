@@ -22,7 +22,7 @@ public interface MessageDao {
     void insert(Message... messages);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAllOrders(List<Message> order);
+    void insertAll(List<Message> order);
 
     @Update
     void update(Message... messages);

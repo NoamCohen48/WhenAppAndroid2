@@ -27,8 +27,8 @@ public class ContactViewModel extends AndroidViewModel {
     }
 
     // null if ok, error text if there is an error
-    public String insert(String username, String nickname, String server) {
-        if(username == currentUser){
+    public String addContact(String username, String nickname, String server) {
+        if(username.equals(currentUser)){
             return "cant add yourself";
         }
 

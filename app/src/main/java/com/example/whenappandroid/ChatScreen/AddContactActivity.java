@@ -27,7 +27,7 @@ public class AddContactActivity extends AppCompatActivity {
             String nickname = binding.nicknameInputBox.getText().toString();
             String server = binding.serverInputBox.getText().toString();
 
-            String added = viewModel.insert(username, nickname, server);
+            String added = viewModel.addContact(username, nickname, server);
 
             if (added == null) {
                 finish();

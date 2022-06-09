@@ -1,30 +1,63 @@
 package com.example.whenappandroid.ChatScreen.MessageList;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whenappandroid.Data.Message;
 import com.example.whenappandroid.databinding.RecycleMessagesByMeBinding;
+import com.example.whenappandroid.databinding.RecycleMessagesByOtherBinding;
+import com.example.whenappandroid.databinding.RecyclerviewContactBinding;
 
-public class MessageListAdapter  extends ListAdapter<Message, MessageViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
 
-    public MessageListAdapter(@NonNull DiffUtil.ItemCallback<Message> diffCallback) {
-        super(diffCallback);
+public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private List<Message> messageList = new ArrayList<>();
+    public static final int MESSAGE_TYPE_IN = 1;
+    public static final int MESSAGE_TYPE_OUT = 2;
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == MESSAGE_TYPE_IN) {
+            @NonNull RecycleMessagesByMeBinding binding = RecycleMessagesByMeBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            return new MessageInViewHolder(binding);
+        }
+        @NonNull RecycleMessagesByOtherBinding binding = RecycleMessagesByOtherBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new MessageOutViewHolder(binding);
     }
 
     @Override
-    public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MessageViewHolder(RecycleMessagesByMeBinding.inflate(LayoutInflater.from(parent.getContext())));
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (messageList.get(position).isSent()) {
+            ((MessageInViewHolder) holder).bind(messageList.get(position));
+        } else {
+            ((MessageOutViewHolder) holder).bind(messageList.get(position));
+        }
+    }
+
+    public void submitList(List<Message> m) {
+        messageList = m;
+        notifyDataSetChanged();
     }
 
     @Override
-    public void onBindViewHolder(MessageViewHolder holder, int position) {
-        Message current = getItem(position);
-        holder.bind(current);
+    public int getItemCount() {
+        return messageList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (messageList.get(position).isSent()) {
+            return MESSAGE_TYPE_IN;
+        }
+        return MESSAGE_TYPE_OUT;
     }
 
     static public class MessageDiff extends DiffUtil.ItemCallback<Message> {

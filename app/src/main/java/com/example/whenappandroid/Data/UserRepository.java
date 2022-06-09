@@ -1,9 +1,7 @@
 package com.example.whenappandroid.Data;
 
 import android.app.Application;
-import android.util.Log;
 
-import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -11,9 +9,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserRepository {
-    private String currentUser;
-
-    private String serverUrl = "http://10.0.2.2:5270/";
     private ServerAPI api;
     private AppDB db;
     private ContactDao contactDao;
@@ -32,37 +27,45 @@ public class UserRepository {
         api.getContacts().enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                if (response.code() == 200){
+                // if success
+                if (response.code() == 200) {
+                    // removing all
                     db.clearAllTables();
+
+                    // getting all contacts
                     List<Contact> contacts = response.body();
-                    contactDao.insertAllOrders(contacts);
-                    assert contacts != null;
+
+                    // inserting all
+                    contactDao.insertAll(contacts);
+
+                    // getting all messages
                     for (Contact c : contacts) {
+
                         api.getMessages(c.getId()).enqueue(new Callback<List<Message>>() {
                             @Override
                             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                                if(response.code() == 200){
+                                if (response.code() == 200) {
                                     List<Message> messages = response.body();
-                                    for(Message m : messages){
+                                    for (Message m : messages) {
                                         m.setContact(c.getId());
                                     }
-                                    messagesDao.insertAllOrders(messages);
+                                    messagesDao.insertAll(messages);
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<List<Message>> call, Throwable t) {
-
+                                t.printStackTrace();
                             }
                         });
+
                     }
-                    Log.d("custom", response.body().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Contact>> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
 
@@ -71,7 +74,7 @@ public class UserRepository {
     private static UserRepository instance;
 
     private UserRepository(Application application) {
-        api = RetrofitService.getAPI(serverUrl);
+        api = RetrofitService.getAPI(Globals.server);
 
         db = AppDB.getDatabase(application);
         contactDao = db.contactDao();
