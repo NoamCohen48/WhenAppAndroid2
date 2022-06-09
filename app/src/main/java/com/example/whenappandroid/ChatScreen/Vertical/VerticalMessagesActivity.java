@@ -1,7 +1,10 @@
 package com.example.whenappandroid.ChatScreen.Vertical;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -53,6 +56,16 @@ public class VerticalMessagesActivity extends AppCompatActivity {
             binding.recyclerGchat.scrollToPosition(adapter.getItemCount() - 1);
         });
 
+        binding.textInputMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) || actionId == EditorInfo.IME_ACTION_GO) {
+                    sendMessage();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         binding.buttonGchatSend.setOnClickListener(v -> {
             sendMessage();
         });
@@ -61,7 +74,9 @@ public class VerticalMessagesActivity extends AppCompatActivity {
     private void sendMessage() {
         String from = Globals.currentUser;
         String content = binding.textInputMessage.getText().toString();
-
+        if (content.isEmpty()) {
+            return;
+        }
         viewModel.addMessage(from, currentContact, content);
 
         binding.textInputMessage.setText("");
