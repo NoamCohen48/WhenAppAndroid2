@@ -19,7 +19,7 @@ public class MessageRepository {
     public MessageRepository(Application application) {
         AppDB db = AppDB.getDatabase(application);
         messageDao = db.messageDao();
-
+        contactDao = db.contactDao();
 
         api = RetrofitService.getAPI(Globals.server);
     }
@@ -39,6 +39,8 @@ public class MessageRepository {
 
                     to.setLast(message.getContent());
                     to.setLastdate(message.getCreated());
+
+                    contactDao.update(to);
                 }
             }
 
