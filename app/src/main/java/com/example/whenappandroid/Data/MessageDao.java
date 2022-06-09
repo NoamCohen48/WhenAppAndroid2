@@ -12,6 +12,10 @@ import java.util.List;
 
 @Dao
 public interface MessageDao {
+
+    @Query("SELECT * FROM message")
+    List<Message> Index();
+
     @Query("SELECT * FROM message WHERE contact = :with ORDER BY created")
     LiveData<List<Message>> getMessages(String with);
 

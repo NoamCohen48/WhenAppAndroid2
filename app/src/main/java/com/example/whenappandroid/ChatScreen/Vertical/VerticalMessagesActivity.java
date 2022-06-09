@@ -4,20 +4,35 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.room.Room;
 
 import com.example.whenappandroid.ChatScreen.MessageList.MessageListAdapter;
 import com.example.whenappandroid.ChatScreen.MessageList.MessageViewModel;
+import com.example.whenappandroid.Data.AppDB;
 import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.Data.Globals;
+import com.example.whenappandroid.Data.Message;
+import com.example.whenappandroid.Data.MessageDao;
 import com.example.whenappandroid.databinding.ActivityVerticalMessagesBinding;
+import com.google.type.DateTime;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 public class VerticalMessagesActivity extends AppCompatActivity {
     private ActivityVerticalMessagesBinding binding;
     private MessageViewModel viewModel;
     private Contact currentContact;
-
+    private MessageDao messageDao;
+    private AppDB db;
+    List<Message> allMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +41,14 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        currentContact = (Contact) getIntent().getSerializableExtra("contact");
+        db = Room.databaseBuilder(this, AppDB.class, "WhenAppDB").allowMainThreadQueries().build();
+        messageDao = db.messageDao();
 
-        final MessageListAdapter adapter = new MessageListAdapter(new MessageListAdapter.MessageDiff());
+
+        currentContact = (Contact) getIntent().getSerializableExtra("contact");
+        allMessages = messageDao.Index();
+
+        final MessageListAdapter adapter = new MessageListAdapter(this,allMessages);
         binding.recyclerGchat.setAdapter(adapter);
         binding.recyclerGchat.setLayoutManager(new LinearLayoutManager(this));
 

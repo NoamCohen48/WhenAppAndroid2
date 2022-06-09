@@ -7,10 +7,10 @@ import com.example.whenappandroid.databinding.RecycleMessagesByMeBinding;
 
 
 
-public class MessageViewHolder extends RecyclerView.ViewHolder{
+public class MessageInViewHolder extends RecyclerView.ViewHolder{
     private RecycleMessagesByMeBinding binding;
 
-    public MessageViewHolder(RecycleMessagesByMeBinding binding) {
+    public MessageInViewHolder(RecycleMessagesByMeBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
