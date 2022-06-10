@@ -2,15 +2,21 @@ package com.example.whenappandroid.Register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
 import com.example.whenappandroid.Data.Globals;
+import com.example.whenappandroid.R;
+import com.example.whenappandroid.SettingsScreen.SettingsActivity;
 import com.example.whenappandroid.databinding.ActivityRegisterBinding;
 
 import java.util.regex.Matcher;
@@ -115,5 +121,18 @@ public class RegisterActivity extends AppCompatActivity {
                 binding.ErrorText.setText("Error connecting to server");
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }
