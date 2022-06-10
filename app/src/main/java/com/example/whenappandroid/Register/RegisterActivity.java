@@ -19,6 +19,9 @@ import com.example.whenappandroid.R;
 import com.example.whenappandroid.SettingsScreen.SettingsActivity;
 import com.example.whenappandroid.databinding.ActivityRegisterBinding;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
             imagePicker.launch(new String[]{"image/*"});
         });
     }
-
     void register() {
         String username = binding.usernameInputBox.getText().toString();
         String nickname = binding.nicknameInputBox.getText().toString();
@@ -80,6 +82,11 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         //TODO: check if password is indeed password
+        if(!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$")) {
+            binding.passwordInputBox.setError("Must contain at least one number and one uppercase " +
+                    "and lowercase letter, and at least 8 or more characters");
+            isCorrect = false;
+        }
 
         if (!password.equals(confirmPassword)) {
             binding.confirmPasswordInputBox.setError("the password is not the same");
