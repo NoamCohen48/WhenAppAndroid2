@@ -8,12 +8,22 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.whenappandroid.R;
 import com.example.whenappandroid.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
+
     private ActivitySettingsBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.Theme_Dark);
+        } else {
+            setTheme(R.style.Theme_Light);
+        }
+
         super.onCreate(savedInstanceState);
         binding  = ActivitySettingsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
