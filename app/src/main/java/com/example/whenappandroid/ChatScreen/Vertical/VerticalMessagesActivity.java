@@ -43,6 +43,7 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         MessageListAdapter adapter = new MessageListAdapter();
         binding.recyclerGchat.setAdapter(adapter);
         binding.recyclerGchat.setLayoutManager(new LinearLayoutManager(this));
+        binding.contactName.setText(currentContact.getName());
 
 
         viewModel.getMessages(currentContact).observe(this, list -> {
