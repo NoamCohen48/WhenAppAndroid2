@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/teal_200"
     >
 
     <LinearLayout
@@ -27,7 +26,7 @@
             android:hint="@string/login_etUsername"
             android:textColorHint="@color/white"
             android:inputType="textPersonName"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:minHeight="70dp" />
 
         <EditText
@@ -39,7 +38,7 @@
             android:hint="@string/login_etPassword"
             android:textColorHint="@color/white"
             android:inputType="textPassword"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnPrimary"
             android:minHeight="70dp" />
 
         <TextView
@@ -49,7 +48,7 @@
             android:fontFamily="monospace"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="#BD0404"
+            android:textColor="?attr/colorError"
             android:textSize="24sp"
             android:typeface="monospace"
             tools:text="Test Text" />
