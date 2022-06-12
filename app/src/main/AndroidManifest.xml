@@ -21,9 +21,9 @@
         <service
             android:name=".FirebaseService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
@@ -36,7 +36,13 @@
         <activity
             android:name=".ChatScreen.Vertical.VerticalContactsActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ChatScreen.Horizontal.ChatHorizontalActivity"
             android:configChanges="orientation|screenSize"
@@ -50,11 +56,7 @@
         <activity
             android:name=".Login.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

@@ -18,7 +18,7 @@ public interface MessageDao {
     @Query("SELECT * FROM message WHERE id =:id")
     Message get(int id);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Message... messages);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
