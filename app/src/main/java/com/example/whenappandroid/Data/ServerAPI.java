@@ -87,5 +87,18 @@ public interface ServerAPI {
     }
 
     @POST("api/invitations")
-    Call<Void> invitations(@Url String hisServer, @Body InvitationsPayload payload);
+    Call<Void> invitations(@Body InvitationsPayload payload);
+
+    class RegisterTokenPayload {
+        public String username;
+        public String token;
+
+        public RegisterTokenPayload(String username, String token) {
+            this.username = username;
+            this.token = token;
+        }
+    }
+
+    @POST("api/registertoken")
+    Call<Void> registerToken(@Body RegisterTokenPayload payload);
 }

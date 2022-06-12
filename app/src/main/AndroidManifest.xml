@@ -17,19 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         tools:targetApi="31">
+
+        <service
+            android:name=".FirebaseService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".ChatScreen.Vertical.VerticalMessagesActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ChatScreen.AddContactActivity"
             android:exported="false" />
         <activity
             android:name=".ChatScreen.Vertical.VerticalContactsActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".ChatScreen.Horizontal.ChatHorizontalActivity"
             android:configChanges="orientation|screenSize"
