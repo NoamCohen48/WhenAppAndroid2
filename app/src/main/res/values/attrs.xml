@@ -2,7 +2,6 @@
 <resources>
 <!--    <declare-styleable name="dark_theme">-->
 
-        <!-- BLYAT. -->
         <attr name="colorPrimary" format="color"/>
         <attr name="colorPrimaryVariant" format="color"/>
         <attr name="colorOnPrimary" format="color"/>
