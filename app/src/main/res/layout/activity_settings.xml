@@ -49,6 +49,7 @@
         android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorPrimary"
         android:text="Submit"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
