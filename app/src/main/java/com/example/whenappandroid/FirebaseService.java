@@ -6,8 +6,10 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 
 import com.example.whenappandroid.Data.AppDB;
+import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.Data.ContactDao;
 import com.example.whenappandroid.Data.Globals;
 import com.example.whenappandroid.Data.Message;
@@ -21,6 +23,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -44,14 +47,28 @@ public class FirebaseService extends FirebaseMessagingService {
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
         Map<String, String> data = remoteMessage.getData();
-        Message message = new Message(
-                Integer.parseInt(data.get("id")),
-                data.get("contact"),
-                data.get("content"),
-                data.get("created"),
-                data.get("sent").equals("true")
-        );
-        messageDao.insert(message);
+
+        if (data.get("type").equals("message")) {
+            Message message = new Message(
+                    Integer.parseInt(data.get("id")),
+                    data.get("contact"),
+                    data.get("content"),
+                    data.get("created"),
+                    data.get("sent").equals("true")
+            );
+            messageDao.insert(message);
+
+        } else {
+            Contact contact = new Contact(
+                    data.get("id"),
+                    data.get("name"),
+                    data.get("server"),
+                    "",
+                    null
+            );
+            contactDao.insert(contact);
+        }
+
     }
 
     @Override
