@@ -74,7 +74,7 @@ public class UserRepository {
     private static UserRepository instance;
 
     private UserRepository(Application application) {
-        api = RetrofitService.getAPI(Globals.server);
+        api = RetrofitService.getAPI(Globals.getServerAndroid());
 
         db = AppDB.getDatabase(application);
         contactDao = db.contactDao();

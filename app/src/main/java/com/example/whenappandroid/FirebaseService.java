@@ -1,12 +1,8 @@
 package com.example.whenappandroid;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 
 import com.example.whenappandroid.Data.AppDB;
 import com.example.whenappandroid.Data.Contact;
@@ -16,14 +12,9 @@ import com.example.whenappandroid.Data.Message;
 import com.example.whenappandroid.Data.MessageDao;
 import com.example.whenappandroid.Data.RetrofitService;
 import com.example.whenappandroid.Data.ServerAPI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -40,7 +31,7 @@ public class FirebaseService extends FirebaseMessagingService {
         contactDao = db.contactDao();
         messageDao = db.messageDao();
 
-        api = RetrofitService.getAPI(Globals.server);
+        api = RetrofitService.getAPI(Globals.getServerAndroid());
     }
 
     @Override
@@ -79,7 +70,7 @@ public class FirebaseService extends FirebaseMessagingService {
     }
 
     private void sendRegistrationToServer(String refreshedToken) {
-        ServerAPI api = RetrofitService.getAPI(Globals.server);
+        ServerAPI api = RetrofitService.getAPI(Globals.getServerAndroid());
         api.registerToken(new ServerAPI.RegisterTokenPayload("noam", refreshedToken)).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
