@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/Widget.AppCompat.Toolbar"
+            android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.AppCompat.Light">
 
         </androidx.appcompat.widget.Toolbar>
@@ -28,9 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="16dp"
+        android:background="?attr/colorBackground"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
         app:layout_constraintVertical_bias="0.0" />
@@ -56,20 +59,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:outlineAmbientShadowColor="?attr/colorOnSurface"
+        android:outlineSpotShadowColor="?attr/colorOnSurface"
         app:layout_constraintStart_toStartOf="parent">
 
 
         <EditText
-            android:layout_marginStart="16dp"
             android:id="@+id/edit_gchat_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
             android:layout_toStartOf="@+id/button_gchat_send"
             android:background="@android:color/transparent"
+            android:outlineAmbientShadowColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurface"
+            android:textColorHighlight="?attr/colorOnSurface"
+            android:outlineSpotShadowColor="?attr/colorOnSurface"
+            android:shadowColor="?attr/colorOnSurface"
+            android:textColorLink="?attr/colorOnSurface"
             android:hint="Enter Message"
             android:inputType="text"
             android:maxLines="6"
+            android:textColor="?attr/colorOnSurface"
             tools:ignore="Autofill" />
 
         <Button

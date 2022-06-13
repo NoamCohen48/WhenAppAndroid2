@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray">
+    android:background="?attr/colorBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/layout_group_chat"
@@ -23,7 +23,11 @@
         android:layout_marginBottom="16dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator"
-        app:layout_constraintTop_toBottomOf="@+id/layout_group_chat" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_group_chat"
+        android:background="?attr/colorBackground"
+        android:outlineAmbientShadowColor="?attr/colorOnSurface"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="91dp" />
 
     <TextView
         android:id="@+id/text_gchat_indicator"
@@ -57,10 +61,16 @@
             android:layout_marginStart="16dp"
             android:layout_toStartOf="@+id/button_gchat_send"
             android:background="@android:color/transparent"
-            android:textColor="?attr/colorOnSurface"
             android:hint="Enter Message"
             android:inputType="text"
             android:maxLines="6"
+            android:textColor="?attr/colorOnSurface"
+            android:outlineSpotShadowColor="?attr/colorOnSurface"
+            android:textColorLink="?attr/colorOnSurface"
+            android:shadowColor="?attr/colorOnSurface"
+            android:textColorHighlight="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurface"
+            android:outlineAmbientShadowColor="?attr/colorOnSurface"
             tools:ignore="Autofill" />
 
         <Button

@@ -20,6 +20,5 @@
         <!-- Background brand color. -->
         <item name="colorBackground">@color/light_black</item>
         <item name="colorOnBackground">@color/white</item>
-
     </style>
 </resources>
