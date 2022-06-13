@@ -21,7 +21,7 @@ public class MessageRepository {
         messageDao = db.messageDao();
         contactDao = db.contactDao();
 
-        api = RetrofitService.getAPI(Globals.server);
+        api = RetrofitService.getAPI(Globals.getServerAndroid());
     }
 
     public LiveData<List<Message>> getMessages(String with) {
@@ -50,18 +50,16 @@ public class MessageRepository {
             }
         });
 
-//        String otherServer = to.getServer().replace("localhost", "10.0.2.2");
-//        ServerAPI otherApi = RetrofitService.getAPI(otherServer);
-//        otherApi.transfer(new ServerAPI.TransferPayload(from, to.getId(), content)).enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {
-//
-//            }
-//        });
+        String otherServer = to.getServer().replace("localhost", "10.0.2.2");
+        ServerAPI otherApi = RetrofitService.getAPI(otherServer);
+        otherApi.transfer(new ServerAPI.TransferPayload(from, to.getId(), content)).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            }
+        });
     }
 }

@@ -21,7 +21,7 @@ public class ContactRepository {
         contactDao = db.contactDao();
         allContacts = contactDao.getAll();
 
-        api = RetrofitService.getAPI(Globals.server);
+        api = RetrofitService.getAPI(Globals.getServerAndroid());
     }
 
     public LiveData<List<Contact>> getAllContacts() {
@@ -40,6 +40,20 @@ public class ContactRepository {
 
             @Override
             public void onFailure(Call<Contact> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        ServerAPI otherApi = RetrofitService.getAPI(Globals.regularToAndroid(server));
+        otherApi.invitations(new ServerAPI.InvitationsPayload(from, username, Globals.getServerRegular())).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("custom-error", "onFailure in invitations:");
                 t.printStackTrace();
             }
         });
