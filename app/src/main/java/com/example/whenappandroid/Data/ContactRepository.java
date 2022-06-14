@@ -48,7 +48,7 @@ public class ContactRepository {
         otherApi.invitations(new ServerAPI.InvitationsPayload(from, username, Globals.getServerRegular())).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-
+                int x= 1;
             }
 
             @Override
