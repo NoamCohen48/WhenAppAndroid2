@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.whenappandroid.ChatScreen.Vertical.VerticalContactsActivity;
+import com.example.whenappandroid.ChatScreen.Horizontal.ChatHorizontalActivity;
 import com.example.whenappandroid.Data.Globals;
 import com.example.whenappandroid.R;
 import com.example.whenappandroid.Register.RegisterActivity;
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (response.code() == 200) {
                         Globals.currentUser = username;
-                        Intent intent = new Intent(LoginActivity.this, VerticalContactsActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, ChatHorizontalActivity.class);
                         startActivity(intent);
                         return;
                     }
