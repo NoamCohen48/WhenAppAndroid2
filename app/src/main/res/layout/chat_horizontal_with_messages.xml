@@ -8,54 +8,35 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/contactList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/recyclerview_contact" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_gchat"
-        android:layout_width="498dp"
-        android:layout_height="255dp"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/messagesList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="?attr/colorBackground"
         android:outlineAmbientShadowColor="?attr/colorOnSurface"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@+id/text_gchat_indicator"
-        tools:layout_editor_absoluteX="233dp" />
-
-    <TextView
-        android:id="@+id/text_gchat_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/view"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="220dp"
-        android:background="#e0e0e0"
         app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/dataContact" />
 
     <RelativeLayout
         android:id="@+id/layout_gchat_chatbox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="230dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2">
 
 
         <EditText
@@ -95,13 +76,10 @@
         android:id="@+id/dataContact"
         android:layout_width="496dp"
         android:layout_height="70dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="20dp"
         android:background="?attr/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_gchat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/recyclerview">
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/contactList">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -120,5 +98,12 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView2" />
     </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="220dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
