@@ -1,8 +1,11 @@
 package com.example.whenappandroid;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.whenappandroid.Data.AppDB;
 import com.example.whenappandroid.Data.Contact;
@@ -22,9 +25,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FirebaseService extends FirebaseMessagingService {
-    private ServerAPI api;
+    public ServerAPI api;
     private ContactDao contactDao;
     private MessageDao messageDao;
+    static public String token;
 
     public FirebaseService() {
         AppDB db = AppDB.getDatabase(this);
@@ -49,6 +53,11 @@ public class FirebaseService extends FirebaseMessagingService {
             );
             messageDao.insert(message);
 
+            Contact contact = contactDao.getContact(data.get("contact"));
+
+            contact.setLast(data.get("content"));
+            contact.setLastdate(data.get("created"));
+            contactDao.update(contact);
         } else {
             Contact contact = new Contact(
                     data.get("id"),
@@ -65,22 +74,13 @@ public class FirebaseService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String refreshedToken) {
         super.onNewToken(refreshedToken);
-
-        sendRegistrationToServer(refreshedToken);
+        token = refreshedToken;
+        getSharedPreferences("_", MODE_PRIVATE).edit().putString("firebaseToken", refreshedToken).apply();
     }
 
-    private void sendRegistrationToServer(String refreshedToken) {
-        ServerAPI api = RetrofitService.getAPI(Globals.getServerAndroid());
-        api.registerToken(new ServerAPI.RegisterTokenPayload("noam", refreshedToken)).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("custom:", "sendRegistrationToServer: " + refreshedToken);
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                int x;
-            }
-        });
+    public static String getToken(Context context) {
+        return context.getSharedPreferences("_", MODE_PRIVATE).getString("firebaseToken", "empty");
     }
+
+
 }

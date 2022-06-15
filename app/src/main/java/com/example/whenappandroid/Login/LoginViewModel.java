@@ -31,7 +31,7 @@ public class LoginViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
 

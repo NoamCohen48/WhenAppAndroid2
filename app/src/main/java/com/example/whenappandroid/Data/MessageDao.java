@@ -12,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface MessageDao {
-    @Query("SELECT * FROM message WHERE contact = :with ORDER BY created")
+    @Query("SELECT * FROM message WHERE contact = :with ORDER BY id")
     LiveData<List<Message>> getMessages(String with);
 
     @Query("SELECT * FROM message WHERE id =:id")

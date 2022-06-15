@@ -19,6 +19,7 @@ import com.example.whenappandroid.ChatScreen.MessageList.MessageListAdapter;
 import com.example.whenappandroid.ChatScreen.MessageList.MessageViewModel;
 import com.example.whenappandroid.Data.Contact;
 import com.example.whenappandroid.Data.Globals;
+import com.example.whenappandroid.FirebaseService;
 import com.example.whenappandroid.R;
 import com.example.whenappandroid.SettingsScreen.SettingsActivity;
 import com.example.whenappandroid.databinding.ActivityVerticalMessagesBinding;
@@ -44,7 +45,6 @@ public class VerticalMessagesActivity extends AppCompatActivity {
         binding.recyclerGchat.setAdapter(adapter);
         binding.recyclerGchat.setLayoutManager(new LinearLayoutManager(this));
         binding.contactName.setText(currentContact.getName());
-
 
         viewModel.getMessages(currentContact).observe(this, list -> {
             adapter.submitList(list);

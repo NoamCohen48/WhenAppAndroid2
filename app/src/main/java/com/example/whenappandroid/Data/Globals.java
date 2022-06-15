@@ -2,7 +2,7 @@ package com.example.whenappandroid.Data;
 
 public class Globals {
     public static String currentUser;
-    private static String server = "http://10.0.2.2:5270/";
+    private static String server = "10.0.2.2:5270";
 
     public static String getServerAndroid() {
         return server.replace("localhost", "10.0.2.2");

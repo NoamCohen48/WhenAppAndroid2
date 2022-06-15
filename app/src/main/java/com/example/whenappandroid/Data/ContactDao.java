@@ -21,6 +21,9 @@ public interface ContactDao {
     @Query("SELECT * FROM contact WHERE id =:id")
     LiveData<Contact> get(String id);
 
+    @Query("SELECT * FROM contact WHERE id =:id")
+    Contact getContact(String id);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Contact... contacts);
 

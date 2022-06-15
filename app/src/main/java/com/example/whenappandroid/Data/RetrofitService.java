@@ -40,7 +40,7 @@ public class RetrofitService {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
+                .baseUrl("http://" + url + "/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client.build())
                 .build();

@@ -59,6 +59,7 @@ public class MessageRepository {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
             }
         });
     }
