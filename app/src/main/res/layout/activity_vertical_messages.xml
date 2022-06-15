@@ -16,7 +16,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_gchat"
+        android:id="@+id/messagesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
@@ -89,7 +89,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="411dp"
         android:layout_height="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_gchat"
+        app:layout_constraintBottom_toTopOf="@+id/messagesList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="?attr/colorPrimary"
