@@ -3,6 +3,7 @@ package com.example.whenappandroid.ChatScreen.Horizontal;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -55,6 +56,7 @@ public class ChatHorizontalActivity extends AppCompatActivity {
             viewModel.getMessages(contact).observe(this, list -> {
                 messageAdapter.submitList(list);
                 binding.messagesList.scrollToPosition(messageAdapter.getItemCount() - 1);
+                Log.d("custom", "observed");
             });
 
             binding.textInputMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {

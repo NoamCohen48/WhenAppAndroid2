@@ -11,6 +11,7 @@
         android:id="@+id/contactList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:outlineAmbientShadowColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -93,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="20dp"
-            android:text="TextView"
+            android:text="No one was chosen"
             android:textColor="?attr/colorOnSurface"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView2" />
@@ -103,6 +104,7 @@
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FF0000"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="220dp" />
 

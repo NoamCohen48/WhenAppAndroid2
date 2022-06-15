@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         }
 
-        //TODO: check if password is indeed password
+        // check if password is indeed password
         if(!password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$")) {
             binding.passwordInputBox.setError("Must contain at least one number and one uppercase " +
                     "and lowercase letter, and at least 8 or more characters");
