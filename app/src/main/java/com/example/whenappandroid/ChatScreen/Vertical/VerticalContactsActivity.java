@@ -44,8 +44,8 @@ public class VerticalContactsActivity extends AppCompatActivity {
         setContentView(view);
 
         ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.ContactDiff());
-        binding.recyclerview.setAdapter(adapter);
-        binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        binding.contactList.setAdapter(adapter);
+        binding.contactList.setLayoutManager(new LinearLayoutManager(this));
         adapter.setItemClickListener((v, contact) -> {
             Intent intent = new Intent(this, VerticalMessagesActivity.class);
             intent.putExtra("contact", contact);
