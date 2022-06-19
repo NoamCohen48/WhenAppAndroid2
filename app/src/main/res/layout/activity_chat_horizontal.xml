@@ -9,8 +9,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contactList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="214dp"
+        android:layout_height="410dp"
+        android:layout_marginEnd="8dp"
         android:outlineAmbientShadowColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -28,8 +29,10 @@
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/dataContact" />
+        app:layout_constraintTop_toBottomOf="@+id/dataContact"
+        app:layout_constraintVertical_bias="1.0" />
 
     <RelativeLayout
         android:id="@+id/layout_gchat_chatbox"
@@ -75,7 +78,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/dataContact"
-        android:layout_width="496dp"
+        android:layout_width="447dp"
         android:layout_height="70dp"
         android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,8 +107,51 @@
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="671dp"
         android:background="#FF0000"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="220dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="220dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="10dp"
+        android:layout_height="409dp"
+        android:background="?android:attr/listDivider"
+        android:outlineAmbientShadowColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="212dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
