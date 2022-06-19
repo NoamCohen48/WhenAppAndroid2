@@ -2,10 +2,10 @@
 We have created an app "inspired" by WhatsApp for multi platform communication.
 
 ### Preview
-<img src="https://user-images.githubusercontent.com/47411973/174489826-a74a391e-1f76-49de-a27a-4a14277b2d0b.png" width="1000">
-<img src="https://user-images.githubusercontent.com/47411973/174489926-fee402ab-90dd-40ec-9e0e-8ae92552d034.png" width="1000">
-<img src="https://user-images.githubusercontent.com/47411973/174489943-e99523a0-bd9e-406b-af0f-893bda131ccc.png" width="1000">
-<img src="https://user-images.githubusercontent.com/47411973/174489955-69e3a80f-14e1-4449-9f19-f2124378fd45.png" width="1000">
+<img src="https://user-images.githubusercontent.com/47411973/174489826-a74a391e-1f76-49de-a27a-4a14277b2d0b.png" width="300">
+<img src="https://user-images.githubusercontent.com/47411973/174489926-fee402ab-90dd-40ec-9e0e-8ae92552d034.png" width="300">
+<img src="https://user-images.githubusercontent.com/47411973/174489943-e99523a0-bd9e-406b-af0f-893bda131ccc.png" width="300">
+<img src="https://user-images.githubusercontent.com/47411973/174489955-69e3a80f-14e1-4449-9f19-f2124378fd45.png" width="600">
 
 
 
