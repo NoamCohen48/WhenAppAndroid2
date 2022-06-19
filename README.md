@@ -1,9 +1,13 @@
 # WhenApp Android
-we have created an app "inspired" by WhatsApp for multi platform communication.
+We have created an app "inspired" by WhatsApp for multi platform communication.
 
 ### Preview
-<img src="https://user-images.githubusercontent.com/92931230/164974162-bfb6b82e-ffaa-4ef6-874c-aa6e72c4ee8a.png" width="1000">
-<img src="https://user-images.githubusercontent.com/92931230/164974175-2a0fd857-3ee9-4827-869b-dd7363a85131.png" width="1000">
+<img src="https://user-images.githubusercontent.com/47411973/174489826-a74a391e-1f76-49de-a27a-4a14277b2d0b.png" width="1000">
+<img src="https://user-images.githubusercontent.com/47411973/174489926-fee402ab-90dd-40ec-9e0e-8ae92552d034.png" width="1000">
+<img src="https://user-images.githubusercontent.com/47411973/174489943-e99523a0-bd9e-406b-af0f-893bda131ccc.png" width="1000">
+<img src="https://user-images.githubusercontent.com/47411973/174489955-69e3a80f-14e1-4449-9f19-f2124378fd45.png" width="1000">
+
+
 
 ### Development
 The app was created using Android studio, and server side using ASP.NET.
@@ -14,7 +18,8 @@ Also used axios, signalR, room and firebase libraries.
 2. Great design.
 3. Responsive server.
 4. Landscape support.
-5. The data is saved both local and on the side of a server.
+5. Light and Dark modes.
+6. The data is saved both local and on the side of a server.
 
 ### Creators
 this site was created by noam cohen, shaked cohen and roi avraham.
