@@ -24,7 +24,7 @@ Also used axios, signalR, room and firebase libraries.
 ### Creators
 this site was created by noam cohen, shaked cohen and roi avraham.
 
-How To Run
+### How To Run
 
 for this project you need to clone 3 repos:
 
@@ -43,9 +43,9 @@ delete migration folder.
 in package manager run Add-Migration init and Update-Database.
 run the server
 
-Dependencies
+### Dependencies
 this project uses:
 
-android
-ASP.net
-Firebase
+- android
+- ASP.net
+- Firebase
