@@ -45,6 +45,11 @@ run the server first and then run the app.
 5. in package manager run `Add-Migration init` and `Update-Database`.
 6. run the server
 
+> if needed, install EntityFrameworkCore by entering int Package Manager Console  
+> `Install-Package Pomelo.EntityFrameworkCore.MySql -Version 6.0.1`  
+> `Install-Package Microsoft.EntityFrameworkcore.Tools -Version 6.0.1`  
+
+
 ### for running the android app
 1. clone repo
 2. clean project and build
