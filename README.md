@@ -48,9 +48,11 @@ run the server first and then run the app.
 ### for running the android app
 1. clone repo
 2. clean project and build
-> if dependencies error occures, change a dependency version in `package.json` and build (it will make it resync) !insert_image
+> if dependencies error occures, change a dependency version in `app/build.gradle` and build (it will make it resync)  
+> ![Screenshot_2](https://user-images.githubusercontent.com/92931230/176941157-54042a1f-1493-4071-94b7-0a0a178f2d7e.png)
 3. run the app on the emulator
-4. default server is set to 10.0.2.2:!insert port
+
+* default server is set to 10.0.2.2:5270
 
 ## Dependencies
 this project uses:
